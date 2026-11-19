@@ -52,9 +52,21 @@ window.THEATER_DATA = {
 
 改完刷新页面就生效，**不用动任何代码，也不用重新构建**。
 
-## 部署
+## 部署到 GitHub Pages
 
-推仓库 → Settings → Pages → `main` / `/ (root)`。没有构建、没有 CI。
+**第 1 次：**
+
+1. 打开 https://github.com/new?name=ai-theater&visibility=public
+   仓库名 `ai-theater`，选 **Public**，**不要**勾 README / .gitignore / license，点 Create。
+2. 双击 **`发布.command`** —— 它会 push 上去，并打开 Pages 设置页。
+3. 在 Pages 设置里：Source 选 **Deploy from a branch** → `main` / `(root)` → Save。
+4. 等 1 分钟，访问 **https://xuanxuan2333.github.io/ai-theater/**
+
+**以后更新：**
+
+改完 `data/videos.js`，双击 `发布.command` 即可，不用再动 Pages 设置。
+
+手机打开那个地址 → 分享 → **添加到主屏幕**，就是个 App（有图标、全屏、没有地址栏）。
 
 ## 已实现
 
