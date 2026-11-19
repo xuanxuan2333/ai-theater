@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>AI 放映厅 · M0 实机截图</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    width:1600px;height:900px;overflow:hidden;color:#eef1f8;
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+    background:
+      radial-gradient(900px 480px at 10% -6%, rgba(108,123,255,.16), transparent 60%),
+      radial-gradient(820px 440px at 92% 4%, rgba(61,220,192,.10), transparent 60%),#05060a;
+  }
+  body::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+    background-size:56px 56px;mask-image:radial-gradient(circle at 50% 30%,#000 40%,transparent 88%);
+  }
+  .wrap{position:relative;z-index:2;padding:40px 0 0;}
+  header{display:flex;align-items:flex-end;justify-content:space-between;padding:0 90px 22px;}
+  .brand{display:flex;gap:14px;align-items:center;}
+  .logo{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#6c7bff,#3ddcc0);color:#08090d;font-size:17px;}
+  h1{font-size:25px;font-weight:700;letter-spacing:.3px;}
+  h1 span{font-size:11px;color:#5c6579;font-weight:500;letter-spacing:2px;margin-left:8px;}
+  .sub{margin-top:5px;font-size:12px;color:#8b94a9;}
+  .badge{font-size:11px;color:#3ddcc0;border:1px solid rgba(61,220,192,.35);background:rgba(61,220,192,.08);padding:5px 10px;border-radius:8px;}
+  .row{display:flex;justify-content:center;gap:20px;}
+  .slot{width:281px;flex:0 0 281px;}
+  .frame{
+    width:281px;height:608px;border-radius:26px;overflow:hidden;position:relative;
+    border:1px solid #2a3142;box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 5px #0b0d13;
+    background:#07080c;
+  }
+  .frame iframe{width:390px;height:844px;border:0;transform:scale(.7205);transform-origin:top left;}
+  .cap{padding:12px 2px 0;text-align:center;}
+  .cap b{font-size:12.5px;}
+  .cap p{font-size:10px;color:#6c7488;margin-top:4px;line-height:1.5;}
+  footer{margin:26px 90px 0;border-top:1px solid #1a2030;padding-top:12px;display:flex;justify-content:space-between;font-size:10.5px;color:#565e70;}
+  footer b{color:#7f8899;font-weight:500;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">▶</div>
+      <div>
+        <h1>AI 放映厅<span>M0 实机截图</span></h1>
+        <div class="sub">不是设计稿，是能点的页面：<b style="color:#c9d0ff">双击 index.html</b> 就能跑。</div>
+      </div>
+    </div>
+    <div class="badge">60 条示例数据 · 零依赖 · 手机 390×844</div>
+  </header>
+
+  <div class="row">
+    <div class="slot">
+      <div class="frame"><iframe src="../index.html#/"></iframe></div>
+      <div class="cap"><b>① 首页</b><p>四张卡，写了还剩多少与三个场景各多少</p></div>
+    </div>
+    <div class="slot">
+      <div class="frame"><iframe src="../index.html#/m/history/relax"></iframe></div>
+      <div class="cap"><b>② 刷一刷</b><p>5 分钟以内，一屏一条，上滑换</p></div>
+    </div>
+    <div class="slot">
+      <div class="frame"><iframe src="../index.html#/m/interview/listen"></iframe></div>
+      <div class="cap"><b>③ 只听</b><p>画面被盖住，只出声，屏幕常亮</p></div>
+    </div>
+    <div class="slot">
+      <div class="frame"><iframe src="../index.html#/m/history/list"></iframe></div>
+      <div class="cap"><b>④ 列表</b><p>按 UP 主分组，短 / 长 / 未看可筛</p></div>
+    </div>
+    <div class="slot">
+      <div class="frame"><iframe src="../index.html#/me"></iframe></div>
+      <div class="cap"><b>⑤ 我的</b><p>已看 / 喜欢 / 场景占比</p></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>已经能用的：滑动切视频、三个场景队列、赞踩、已看下沉、按 UP 分组、本地记录。</span>
+    <span>还没接的：真实 B 站视频（<b>data/videos.js</b> 里现在是占位数据）</span>
+  </footer>
+</div>
+</body>
+</html>

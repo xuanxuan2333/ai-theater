@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>AI 放映厅 · 极简交互 v0.4</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#05060a;--panel:#0d1017;--line:#232a3a;
+    --txt:#eef1f8;--dim:#8b94a9;--dim2:#5c6579;
+    --accent:#6c7bff;--accent2:#3ddcc0;--pink:#ff7ba8;--gold:#ffc46b;
+  }
+  body{
+    width:1600px;height:1730px;overflow:hidden;color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+    background:
+      radial-gradient(900px 500px at 10% -4%, rgba(108,123,255,.15), transparent 60%),
+      radial-gradient(820px 460px at 92% 2%, rgba(61,220,192,.09), transparent 60%),#05060a;
+  }
+  body::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+    background-size:56px 56px;mask-image:radial-gradient(circle at 50% 30%,#000 42%,transparent 88%);
+  }
+  .wrap{position:relative;z-index:2;padding:44px 0 0;}
+  header{display:flex;align-items:flex-end;justify-content:space-between;padding:0 96px 24px;}
+  .brand{display:flex;gap:15px;align-items:center;}
+  .logo{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#6c7bff,#3ddcc0);color:#08090d;font-size:18px;box-shadow:0 10px 30px rgba(108,123,255,.35);}
+  h1{font-size:27px;letter-spacing:.4px;font-weight:700;}
+  h1 span{font-size:12px;color:var(--dim2);font-weight:500;letter-spacing:2px;margin-left:8px;}
+  .sub{margin-top:6px;font-size:12.5px;color:var(--dim);}
+  .right-meta{text-align:right;font-size:11.5px;color:var(--dim2);line-height:1.9;}
+  .right-meta b{color:var(--accent2);font-weight:600;}
+
+  .strip{margin:0 96px 26px;display:flex;gap:10px;align-items:center;padding:12px 16px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(180deg,rgba(19,24,34,.9),rgba(13,16,23,.6));font-size:12px;}
+  .strip .lbl{color:var(--dim2);letter-spacing:1px;margin-right:4px;font-size:11px;}
+  .sp{display:flex;align-items:center;gap:7px;padding:6px 13px;border-radius:9px;background:#141a26;border:1px solid #26303f;font-size:11.5px;}
+  .sp i{font-style:normal;font-size:12px;}
+  .strip .tail{margin-left:auto;font-size:10.5px;color:#6a7386;}
+  .strip .tail b{color:#9aa6ff;}
+
+  .row{display:flex;justify-content:center;align-items:flex-start;}
+  .slot{width:320px;flex:0 0 320px;}
+  .link{width:46px;flex:0 0 46px;height:620px;display:flex;align-items:center;}
+  .link .ldash{width:20px;height:1px;background:linear-gradient(90deg,transparent,#333d52);}
+  .link .chev{color:#4b556b;font-size:16px;}
+
+  .ph{width:320px;height:620px;border-radius:32px;position:relative;overflow:hidden;background:#0a0c12;border:1px solid #2a3142;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 6px #0b0d13,0 0 0 7px #1c2230;display:flex;flex-direction:column;}
+  .ph::after{content:"";position:absolute;left:50%;bottom:7px;transform:translateX(-50%);width:96px;height:3px;border-radius:3px;background:#2b3242;}
+  .status{height:24px;flex:0 0 24px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-size:9px;color:#c9d0e0;}
+  .status .si{color:#7d8698;letter-spacing:1px;}
+  .nav{height:36px;flex:0 0 36px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:12px;}
+  .body{flex:1;min-height:0;overflow:hidden;padding:0 14px;position:relative;}
+
+  .chip{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;background:#181e2a;border:1px solid #262f40;font-size:8.5px;color:#a9b2c5;}
+  .chip.on{background:rgba(108,123,255,.16);border-color:rgba(108,123,255,.55);color:#c9d0ff;}
+
+  /* home */
+  .mcard{height:104px;border-radius:14px;padding:13px 14px;position:relative;overflow:hidden;margin-bottom:10px;}
+  .mcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,10,.05),rgba(4,6,10,.55));}
+  .mcard>*{position:relative;z-index:2;}
+  .gm1{background:linear-gradient(120deg,#3b45ff,#8b5cf6);}
+  .gm2{background:linear-gradient(120deg,#0c8f7c,#1e9eff);}
+  .gm3{background:linear-gradient(120deg,#c8386a,#ff5f7e);}
+  .gm4{background:linear-gradient(120deg,#b8761a,#ff8a3d);}
+  .mcard .top{display:flex;align-items:center;gap:8px;}
+  .mcard .top b{font-size:14px;}
+  .mcard .top em{font-style:normal;font-size:8px;color:rgba(255,255,255,.72);margin-left:auto;}
+  .mcard .d{font-size:8.5px;color:rgba(255,255,255,.82);margin-top:5px;}
+  .mcard .bar{height:3px;border-radius:2px;background:rgba(255,255,255,.22);margin-top:10px;overflow:hidden;}
+  .mcard .bar i{display:block;height:100%;background:rgba(255,255,255,.9);border-radius:2px;}
+  .mcard .cnt{display:flex;gap:7px;margin-top:8px;font-size:7.5px;color:rgba(255,255,255,.78);}
+  .mcard .cnt span{background:rgba(0,0,0,.28);border-radius:4px;padding:1px 5px;}
+
+  .hint{text-align:center;font-size:8.5px;color:#4d566c;margin-top:12px;line-height:1.6;}
+
+  /* feed */
+  .feedtop{display:flex;align-items:center;gap:7px;padding:5px 0 8px;}
+  .back{font-size:14px;color:#aab3c6;margin-right:2px;}
+  .feedtop .nm{font-size:11.5px;font-weight:600;}
+  .modes{display:flex;gap:3px;background:#141a25;border:1px solid #232b3a;border-radius:8px;padding:2px;margin-left:auto;}
+  .modes div{font-size:8px;padding:3px 7px;border-radius:6px;color:#7f8aa3;}
+  .modes div.on{background:#2a3550;color:#e6ebf5;font-weight:600;}
+  .idx{font-size:8.5px;color:#4d566c;margin-left:6px;font-variant-numeric:tabular-nums;}
+
+  .stage{position:relative;height:282px;border-radius:12px;overflow:hidden;background:#000;margin-top:4px;}
+  .stage .cv{position:absolute;inset:0;}
+  .stage .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(3,4,8,.65));}
+  .playbig{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:rgba(6,8,13,.45);border:1.5px solid rgba(255,255,255,.75);display:grid;place-items:center;font-size:13px;color:#fff;z-index:4;}
+  .tm{position:absolute;right:8px;bottom:8px;font-size:7.5px;padding:1px 5px;border-radius:4px;background:rgba(0,0,0,.65);color:#e6ebf5;z-index:4;}
+
+  .vtitle{font-size:12px;font-weight:700;line-height:1.42;margin-top:8px;}
+  .vmeta{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:8px;color:#5c6579;}
+  .vmeta .up{width:15px;height:15px;border-radius:50%;background:linear-gradient(135deg,#ff9b3d,#ff4d94);}
+
+  .acts{display:flex;gap:8px;margin-top:10px;}
+  .act{flex:1;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:10px;border:1px solid #273043;color:#aab3c6;background:#121823;}
+  .act.like{background:rgba(61,220,192,.1);border-color:rgba(61,220,192,.35);color:#7fe3c9;}
+  .act.dis{background:rgba(255,107,107,.08);border-color:rgba(255,107,107,.3);color:#ff9b9b;}
+  .act .n{font-size:8px;opacity:.75;}
+
+  .feedbot{position:absolute;left:0;right:0;bottom:0;padding:10px 14px 12px;}
+  .qbar{height:2.5px;border-radius:2px;background:#1e2534;overflow:hidden;}
+  .qbar i{display:block;height:100%;background:var(--accent);border-radius:2px;}
+  .swipe{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:7px;font-size:8px;color:#4d566c;}
+
+  /* listen */
+  .listen{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 0%,rgba(108,123,255,.25),transparent 60%),#07080d;display:flex;flex-direction:column;align-items:center;padding:26px 22px 18px;}
+  .coverbig{width:132px;height:132px;border-radius:18px;background:linear-gradient(135deg,#1b4a6b,#3ddcc0 75%,#a8f7b0);box-shadow:0 20px 50px rgba(0,0,0,.55);position:relative;}
+  .coverbig::after{content:"";position:absolute;inset:0;border-radius:18px;border:1px solid rgba(255,255,255,.14);}
+  .lt{font-size:13px;font-weight:700;text-align:center;line-height:1.45;margin-top:18px;}
+  .lu{font-size:9px;color:#6c7488;margin-top:6px;}
+  .lwave{display:flex;gap:3px;align-items:flex-end;height:22px;margin-top:16px;}
+  .lwave i{width:3px;border-radius:2px;background:#3ddcc0;opacity:.75;}
+  .lprog{width:100%;margin-top:16px;}
+  .lprog .b{height:2.5px;border-radius:2px;background:#1e2534;overflow:hidden;}
+  .lprog .b i{display:block;height:100%;background:#3ddcc0;}
+  .lprog .t{display:flex;justify-content:space-between;font-size:7.5px;color:#4d566c;margin-top:5px;}
+  .lnote{margin-top:auto;font-size:7.5px;color:#4d566c;text-align:center;line-height:1.5;}
+
+  /* list */
+  .vrow{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid #161c28;align-items:flex-start;}
+  .vrow .cv{width:88px;height:50px;border-radius:8px;flex:0 0 88px;position:relative;}
+  .vrow .cv::after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;font-size:8px;color:#fff;opacity:.85;}
+  .vrow .cv .d{position:absolute;right:4px;bottom:4px;font-size:7px;background:rgba(0,0,0,.66);padding:0 3px;border-radius:3px;color:#e6ebf5;z-index:2;}
+  .vrow .t{font-size:9.5px;font-weight:600;line-height:1.38;}
+  .vrow .m{font-size:7.5px;color:#5c6579;margin-top:4px;display:flex;gap:4px;align-items:center;}
+  .seen{font-size:7px;color:#3a4152;border:1px solid #232a3a;border-radius:3px;padding:0 3px;}
+
+  /* me */
+  .mhead{display:flex;align-items:center;gap:10px;padding:8px 0 14px;}
+  .ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#3ddcc0,#6c7bff);display:grid;place-items:center;font-size:14px;font-weight:800;color:#06121a;}
+  .mh b{font-size:12.5px;}
+  .mh p{font-size:8px;color:#5c6579;margin-top:3px;}
+  .stats{display:flex;background:#10141d;border:1px solid #1e2534;border-radius:12px;padding:11px 0;}
+  .stats div{flex:1;text-align:center;}
+  .stats .n{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .stats .l{font-size:7.5px;color:#5c6579;margin-top:3px;}
+  .line{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #161c28;font-size:9.5px;}
+  .line .r{font-size:8.5px;color:#5c6579;}
+
+  /* rules card */
+  .rule{background:linear-gradient(180deg,#0d1119,#090c12);border:1px solid var(--line);border-radius:18px;padding:20px;height:620px;display:flex;flex-direction:column;}
+  .rule h3{font-size:13px;margin-bottom:4px;}
+  .rule .sd{font-size:9.5px;color:#6c7488;line-height:1.55;}
+  .rt{width:100%;border-collapse:collapse;margin-top:12px;}
+  .rt th{font-size:8px;color:#4d566c;text-align:left;font-weight:500;padding:5px 4px;border-bottom:1px solid #1c2434;letter-spacing:.5px;}
+  .rt td{font-size:8.5px;color:#9aa4b8;padding:7px 4px;border-bottom:1px solid #151c28;vertical-align:top;line-height:1.45;}
+  .rt td b{color:#e6ebf5;font-weight:600;}
+  .rt .em{color:#6c7bff;}
+  .rnote{margin-top:auto;background:#0b1019;border:1px solid #1b2434;border-radius:10px;padding:10px 11px;font-size:8.5px;color:#8b94a9;line-height:1.6;}
+  .rnote b{color:#c3cbdd;}
+
+  figcaption{padding:14px 4px 0;}
+  .cap-h{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .cap-no{width:21px;height:21px;border-radius:6px;display:grid;place-items:center;font-size:10.5px;font-weight:800;flex:0 0 21px;color:#080d12;background:#8b94a9;}
+  .cap-h b{font-size:12.5px;}
+  .cap-h em{font-style:normal;font-size:8.5px;color:#495267;margin-left:auto;letter-spacing:.6px;}
+  figcaption p{font-size:10px;line-height:1.6;color:#7f899d;padding-left:29px;}
+  figcaption p i{font-style:normal;color:#b9c3d8;}
+
+  .between{display:flex;align-items:center;gap:10px;justify-content:center;margin:26px 96px 14px;font-size:10.5px;color:#5f687b;}
+  .between .ln{height:1px;flex:1;background:linear-gradient(90deg,transparent,#242c3c,transparent);}
+  .between b{color:#8b94a9;font-weight:500;}
+  footer{margin:18px 96px 0;border-top:1px solid #1a2030;padding-top:13px;display:flex;justify-content:space-between;font-size:10px;color:#565e70;}
+  footer b{color:#7f8899;font-weight:500;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">▶</div>
+      <div>
+        <h1>AI 放映厅 · 极简版<span>V0.4</span></h1>
+        <div class="sub">选模块 → 刷 → 赞 / 踩。没有时间轴、没有章节、没有二级导航。</div>
+      </div>
+    </div>
+    <div class="right-meta">
+      交互只剩 3 个动作：<b>点模块 · 滑 · 点赞/踩</b><br>
+      难点不在界面，在选片
+    </div>
+  </header>
+
+  <div class="strip">
+    <span class="lbl">三种场景</span>
+    <span class="sp"><i>🎯</i>专注看 · 长视频</span>
+    <span class="sp"><i>☕</i>刷一刷 · 短视频</span>
+    <span class="sp"><i>🎧</i>只听 · 骑车/吃饭</span>
+    <span class="tail">每个模块都按这三种场景各排一个队列，<b>同一个视频可以同时属于多个场景</b></span>
+  </div>
+
+  <!-- ROW 1 -->
+  <div class="row">
+    <!-- 1 HOME -->
+    <div class="slot">
+      <div class="ph">
+        <div class="status"><span>9:41</span><span class="si">5G ▮▮▮</span></div>
+        <div class="body">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0 14px">
+            <div>
+              <div style="font-size:8px;letter-spacing:2.4px;color:#4d566c">PICK ONE</div>
+              <div style="font-size:18px;font-weight:700;margin-top:2px">今天看点什么</div>
+            </div>
+            <div class="ava" style="width:26px;height:26px;font-size:10px">L</div>
+          </div>
+
+          <div class="mcard gm1">
+            <div class="top"><b>🕰 AI 发展史</b><em>128 条 · 还剩 94</em></div>
+            <div class="d">谁在什么时候做了什么</div>
+            <div class="bar"><i style="width:27%"></i></div>
+            <div class="cnt"><span>专注 42</span><span>刷 61</span><span>听 33</span></div>
+          </div>
+
+          <div class="mcard gm2">
+            <div class="top"><b>🧠 底层原理</b><em>96 条 · 还剩 71</em></div>
+            <div class="d">LLM / RAG / Agent 到底怎么work</div>
+            <div class="bar"><i style="width:26%"></i></div>
+            <div class="cnt"><span>专注 38</span><span>刷 44</span><span>听 29</span></div>
+          </div>
+
+          <div class="mcard gm3">
+            <div class="top"><b>💬 面试实战</b><em>84 条 · 还剩 62</em></div>
+            <div class="d">一道题一条视频，讲怎么答</div>
+            <div class="bar"><i style="width:26%"></i></div>
+            <div class="cnt"><span>专注 30</span><span>刷 39</span><span>听 41</span></div>
+          </div>
+
+          <div class="mcard gm4">
+            <div class="top"><b>⚡ 实操演示</b><em>72 条 · 还剩 58</em></div>
+            <div class="d">跟着做，10 分钟出一个东西</div>
+            <div class="bar"><i style="width:19%"></i></div>
+            <div class="cnt"><span>专注 26</span><span>刷 31</span><span>听 12</span></div>
+          </div>
+
+          <div class="hint">点开就接着上次的地方刷<br>每个模块都有 100+ 条，刷不完</div>
+        </div>
+      </div>
+      <figcaption>
+        <div class="cap-h"><span class="cap-no">1</span><b>首页 = 选模块</b><em>HOME</em></div>
+        <p>四张卡，没有别的。卡上直接写<i>还剩多少条</i>和三种场景各有多少，点一下就开始刷。</p>
+      </figcaption>
+    </div>
+
+    <div class="link"><span class="ldash"></span><span class="chev">›</span></div>
+
+    <!-- 2 FEED -->
+    <div class="slot">
+      <div class="ph">
+        <div class="status"><span>9:41</span><span class="si">5G ▮▮▮</span></div>
+        <div class="body" style="display:flex;flex-direction:column">
+          <div class="feedtop">
+            <span class="back">‹</span><span class="nm">AI 发展史</span>
+            <div class="modes"><div>专注</div><div class="on">刷一刷</div><div>听</div></div>
+            <span class="idx">3/87</span>
+          </div>
+
+          <div class="stage" style="flex:1;min-height:176px;height:auto;margin-bottom:9px">
+            <div class="cv" style="background:linear-gradient(135deg,#1b4a6b,#3ddcc0 70%,#a8f7b0)"></div>
+            <div class="playbig">▶</div>
+            <div class="tm">07:24</div>
+          </div>
+
+          <div class="vtitle">Transformer 到底在干嘛？用一个类比讲清楚</div>
+          <div class="vmeta"><span class="up"></span><span>飞天闪客</span><span>· 48.2 万播放 · 2024-05</span></div>
+
+          <div class="acts">
+            <div class="act like">👍 喜欢 <span class="n">1.2万</span></div>
+            <div class="act dis">👎 不感兴趣</div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:5px;flex-wrap:wrap">
+            <span class="chip">原理</span><span class="chip">讲人话</span><span class="chip">7 分钟</span>
+          </div>
+
+          <div class="feedbot" style="position:static;padding:10px 0 26px">
+            <div class="qbar"><i style="width:3%"></i></div>
+            <div class="swipe">⌃ &nbsp;上滑下一个 · 下滑回到上一条</div>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div class="cap-h"><span class="cap-no">2</span><b>刷视频（主界面）</b><em>FEED</em></div>
+        <p>一屏一条，上滑换下一条。<i>只有两个按钮：喜欢 / 不感兴趣</i>。顶部三个字切换场景，换场景 = 换一个队列。</p>
+      </figcaption>
+    </div>
+
+    <div class="link"><span class="ldash"></span><span class="chev">›</span></div>
+
+    <!-- 3 LISTEN -->
+    <div class="slot">
+      <div class="ph">
+        <div class="status"><span>9:41</span><span class="si">5G ▮▮▮</span></div>
+        <div class="body" style="padding:0">
+          <div class="listen">
+            <div class="coverbig"></div>
+            <div class="lt">OpenAI 十年：从非营利实验室<br>到万亿巨头</div>
+            <div class="lu">商业深潜 · 31:20 · 还剩 12 条</div>
+
+            <div class="lwave">
+              <i style="height:8px"></i><i style="height:16px"></i><i style="height:11px"></i><i style="height:20px"></i>
+              <i style="height:6px"></i><i style="height:14px"></i><i style="height:19px"></i><i style="height:9px"></i>
+              <i style="height:15px"></i><i style="height:7px"></i>
+            </div>
+
+            <div class="lprog">
+              <div class="b"><i style="width:38%"></i></div>
+              <div class="t"><span>11:52</span><span>31:20</span></div>
+            </div>
+
+            <div class="acts" style="width:100%;margin-top:16px">
+              <div class="act like">👍 喜欢</div>
+              <div class="act">⏭ 下一条</div>
+              <div class="act dis">👎</div>
+            </div>
+
+            <div class="lnote">屏幕常亮已开启 · 锁屏会暂停（浏览器限制）</div>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div class="cap-h"><span class="cap-no">3</span><b>只听（骑车 / 吃饭）</b><em>LISTEN</em></div>
+        <p>视频画面被盖住，只留封面、标题和进度，<i>只出声</i>。这类队列只放「不靠画面也能听懂」的视频。</p>
+      </figcaption>
+    </div>
+  </div>
+
+  <div class="between">
+    <span class="ln"></span><b>下面：列表（想挑着看时用）· 我的 · 三条规则</b>
+    <span class="ln"></span>
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="row">
+    <!-- 4 LIST -->
+    <div class="slot">
+      <div class="ph">
+        <div class="status"><span>9:41</span><span class="si">5G ▮▮▮</span></div>
+        <div class="nav"><span class="ic" style="color:#aab3c6">‹</span><span class="nm">AI 发展史 · 128 条</span><span class="ic" style="color:#aab3c6;font-size:11px">⇅</span></div>
+        <div class="body">
+          <div style="display:flex;gap:5px;margin:6px 0 4px">
+            <span class="chip on">全部</span><span class="chip">短视频</span><span class="chip">长视频</span><span class="chip">未看</span>
+          </div>
+          <div style="font-size:8px;color:#4d566c;margin:8px 0 2px">按质量排 · 已看 34 条会自动沉下去</div>
+
+          <div class="vrow">
+            <div class="cv" style="background:linear-gradient(135deg,#1b4a6b,#3ddcc0)"><span class="d">07:24</span></div>
+            <div style="min-width:0"><div class="t">Transformer 到底在干嘛？用一个类比讲清楚</div>
+              <div class="m"><span>飞天闪客</span>·<span>48.2 万</span>·<span>短</span></div></div>
+          </div>
+          <div class="vrow">
+            <div class="cv" style="background:linear-gradient(135deg,#7a1f1f,#ff6b6b)"><span class="d">31:20</span></div>
+            <div style="min-width:0"><div class="t">OpenAI 十年：从非营利实验室到万亿巨头</div>
+              <div class="m"><span>商业深潜</span>·<span>19.6 万</span>·<span>长</span></div></div>
+          </div>
+          <div class="vrow">
+            <div class="cv" style="background:linear-gradient(135deg,#2a1a4a,#8b5cf6)"><span class="d">09:10</span></div>
+            <div style="min-width:0"><div class="t">Hinton 为什么离开 Google</div>
+              <div class="m"><span>硅基漫游</span>·<span>8.1 万</span>·<span>短</span></div></div>
+          </div>
+          <div class="vrow">
+            <div class="cv" style="background:linear-gradient(135deg,#0f2a4a,#1e6fff)"><span class="d">42:10</span></div>
+            <div style="min-width:0"><div class="t">一口气看完 AI 七十年</div>
+              <div class="m"><span>AI 观察局</span>·<span>12.4 万</span>·<span>长</span><span class="seen">已看</span></div></div>
+          </div>
+          <div class="vrow">
+            <div class="cv" style="background:linear-gradient(135deg,#0c8f7c,#1e9eff)"><span class="d">12:47</span></div>
+            <div style="min-width:0"><div class="t">AlphaGo 那盘棋，到底改变了什么</div>
+              <div class="m"><span>棋与算力</span>·<span>6.3 万</span>·<span>长</span></div></div>
+          </div>
+          <div class="vrow">
+            <div class="cv" style="background:linear-gradient(135deg,#3a1e00,#ff9b3d)"><span class="d">06:12</span></div>
+            <div style="min-width:0"><div class="t">深度学习的三次寒冬，以及它为什么没死</div>
+              <div class="m"><span>AI 观察局</span>·<span>19.4 万</span>·<span>短</span></div></div>
+          </div>
+          <div class="vrow" style="border-bottom:none">
+            <div class="cv" style="background:linear-gradient(135deg,#2a1435,#c04bff)"><span class="d">08:30</span></div>
+            <div style="min-width:0"><div class="t">Kimi、豆包、通义、智谱：国产大模型混战</div>
+              <div class="m"><span>硬核实验室</span>·<span>6.3 万</span>·<span>短</span></div></div>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div class="cap-h"><span class="cap-no">4</span><b>列表（想挑着看时）</b><em>LIST</em></div>
+        <p>同一个模块的清单，<i>按 UP 主分组</i>，可按短视频 / 长视频 / 未看筛。点哪条就从哪条开始刷，后面的照常连下去。</p>
+      </figcaption>
+    </div>
+
+    <div class="link"><span class="ldash"></span><span class="chev">›</span></div>
+
+    <!-- 5 ME -->
+    <div class="slot">
+      <div class="ph">
+        <div class="status"><span>9:41</span><span class="si">5G ▮▮▮</span></div>
+        <div class="nav"><span class="nm" style="font-size:12px">我的</span><span class="ic">⋯</span></div>
+        <div class="body">
+          <div class="mhead">
+            <div class="ava">L</div>
+            <div class="mh"><b>梁</b><p>连续 12 天 · 本周 4.5 小时</p></div>
+          </div>
+
+          <div class="stats">
+            <div><div class="n" style="color:#e6ebf5">214</div><div class="l">已看</div></div>
+            <div><div class="n" style="color:#3ddcc0">38</div><div class="l">喜欢</div></div>
+            <div><div class="n" style="color:#ff9b9b">9</div><div class="l">不感兴趣</div></div>
+          </div>
+
+          <div style="font-size:8.5px;color:#5c6579;letter-spacing:1px;margin:16px 0 6px">你都在什么场景下看</div>
+          <div style="display:flex;gap:6px">
+            <div style="flex:1;background:#10141d;border:1px solid #1e2534;border-radius:9px;padding:8px;text-align:center">
+              <div style="font-size:12px;font-weight:700;color:#e6ebf5">18%</div><div style="font-size:7.5px;color:#5c6579;margin-top:2px">🎯 专注</div></div>
+            <div style="flex:1;background:#10141d;border:1px solid #1e2534;border-radius:9px;padding:8px;text-align:center">
+              <div style="font-size:12px;font-weight:700;color:#e6ebf5">61%</div><div style="font-size:7.5px;color:#5c6579;margin-top:2px">☕ 刷一刷</div></div>
+            <div style="flex:1;background:#10141d;border:1px solid #1e2534;border-radius:9px;padding:8px;text-align:center">
+              <div style="font-size:12px;font-weight:700;color:#e6ebf5">21%</div><div style="font-size:7.5px;color:#5c6579;margin-top:2px">🎧 只听</div></div>
+          </div>
+
+          <div style="font-size:8.5px;color:#5c6579;letter-spacing:1px;margin:16px 0 4px">你的赞踩在调什么</div>
+          <div class="line"><span>喜欢的作者会多抓</span><span class="r">飞天闪客 ↑</span></div>
+          <div class="line"><span>不感兴趣的会少抓</span><span class="r">营销号 ↓</span></div>
+          <div class="line"><span>本周新入库</span><span class="r">+38 条</span></div>
+          <div class="line" style="border-bottom:none"><span>导出 / 导入记录</span><span class="r">JSON ›</span></div>
+
+          <div style="margin-top:14px;background:#0b1019;border:1px solid #1b2434;border-radius:10px;padding:9px 10px;font-size:8px;color:#7f8aa3;line-height:1.6">
+            赞踩不只看单条——同一个作者连续被踩 3 次，他的新视频就不再进候选池。
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div class="cap-h"><span class="cap-no">5</span><b>我的（看数字 + 纠正偏好）</b><em>ME</em></div>
+        <p>只有三件事：<i>看了多少、喜欢多少、各场景占比</i>。赞踩会汇总成「这个作者该多抓还是少抓」。</p>
+      </figcaption>
+    </div>
+
+    <div class="link"><span class="ldash"></span><span class="chev"></span></div>
+
+    <!-- 6 RULES -->
+    <div class="slot">
+      <div class="rule">
+        <h3>三条规则</h3>
+        <div class="sd">界面就这么点，剩下的全靠这三条撑住体验。</div>
+
+        <table class="rt">
+          <tr><th style="width:62px">场景</th><th>队列怎么取</th></tr>
+          <tr><td><b>🎯 专注</b></td><td>长视频（&gt; 5 分钟）+ 需要看画面的<br><span class="em">播完停住，不自动跳</span></td></tr>
+          <tr><td><b>☕ 刷一刷</b></td><td>短视频（≤ 5 分钟）<br><span class="em">自动连播，上滑跳过</span></td></tr>
+          <tr><td><b>🎧 只听</b></td><td>标了「不靠画面也能懂」的视频，长短都行<br><span class="em">盖住画面，只出声，屏幕常亮</span></td></tr>
+        </table>
+
+        <table class="rt" style="margin-top:6px">
+          <tr><th style="width:62px">规则</th><th>具体做法</th></tr>
+          <tr><td><b>不重复</b></td><td>看过的立刻下沉，<b>30 天不再出现</b>；每次进入<em>随机起点</em>，不总从头开始</td></tr>
+          <tr><td><b>不跑题</b></td><td>队列只在当前模块内；刷到底提示「这个模块看完了」，不混别的模块</td></tr>
+          <tr><td><b>不越看越窄</b></td><td>赞踩调整的是<b>抓取策略</b>（多抓谁 / 少抓谁），不是把队列变成同一种视频</td></tr>
+        </table>
+
+        <div class="rnote">
+          <b>为什么要有「只听」：</b>骑车、吃饭时你根本看不了屏幕。这类视频必须<em>不依赖画面</em>——纯口播、访谈、复盘就行；代码演示、画图讲解不行。这个标签由大模型读简介和评论判断。
+        </div>
+
+        <div class="rnote" style="margin-top:8px">
+          <b>说实话的限制：</b>B 站播放器在锁屏 / 切后台时浏览器会暂停，<b>做不到真后台播放</b>。所以「只听」是「屏幕亮着放桌上听」，不是「塞兜里听」。要真后台，只能点「去 B 站」用它自己的听视频功能。
+        </div>
+      </div>
+      <figcaption>
+        <div class="cap-h"><span class="cap-no">6</span><b>规则卡（不占屏幕）</b><em>RULES</em></div>
+        <p>这三条决定了「刷起来爽不爽」。<i>不重复靠已看集合 + 随机起点</i>，不跑题靠队列锁模块。</p>
+      </figcaption>
+    </div>
+  </div>
+
+  <footer>
+    <span>砍掉的：时间轴、概念卡、章节、搜索、多级导航。<b>留下的只有：模块 → 刷 → 赞 / 踩。</b></span>
+    <span>难点在选片，不在界面 · 见《策展引擎》和《评分卡》</span>
+  </footer>
+</div>
+</body>
+</html>

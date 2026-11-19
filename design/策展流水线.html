@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>策展流水线</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--bg:#05060a;--panel:#0c0f16;--line:#1f2636;--txt:#eef1f8;--dim:#8b94a9;--dim2:#5c6579;}
+  body{
+    width:1600px;height:806px;overflow:hidden;color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+    background:
+      radial-gradient(760px 420px at 8% 0%, rgba(108,123,255,.15), transparent 60%),
+      radial-gradient(700px 400px at 94% 6%, rgba(255,196,107,.08), transparent 60%),#05060a;
+  }
+  body::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+    background-size:56px 56px;mask-image:radial-gradient(circle at 45% 25%,#000 45%,transparent 92%);
+  }
+  .wrap{position:relative;z-index:2;padding:40px 40px 0;}
+  header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px;}
+  .ttl{font-size:26px;font-weight:700;letter-spacing:.4px;}
+  .ttl span{font-size:12px;color:var(--dim2);letter-spacing:2px;margin-left:10px;font-weight:500;}
+  .sub{margin-top:6px;font-size:12.5px;color:var(--dim);}
+  .badge{font-size:11px;color:#ffc46b;border:1px solid rgba(255,196,107,.35);background:rgba(255,196,107,.08);padding:5px 10px;border-radius:8px;}
+
+  .pipe{display:flex;align-items:stretch;}
+  .stage{
+    width:272px;flex:0 0 272px;background:linear-gradient(180deg,#0d1119,#090c12);
+    border:1px solid var(--line);border-radius:16px;padding:16px 15px 14px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;min-height:368px;
+  }
+  .stage::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c);}
+  .s1{--c:#8b94a9;} .s2{--c:#6c7bff;} .s3{--c:#3ddcc0;} .s4{--c:#ff7ba8;} .s5{--c:#ffc46b;}
+  .sno{display:flex;align-items:center;gap:8px;}
+  .sno i{width:22px;height:22px;border-radius:6px;background:var(--c);color:#080d12;font-style:normal;font-size:11px;font-weight:800;display:grid;place-items:center;}
+  .sno em{font-style:normal;font-size:8.5px;color:#4d566c;letter-spacing:1.6px;}
+  .st{font-size:14px;font-weight:700;margin-top:9px;}
+  .sd{font-size:9.5px;color:#6c7488;margin-top:4px;line-height:1.5;min-height:28px;}
+  .sl{list-style:none;margin-top:11px;flex:1;}
+  .sl li{display:flex;gap:6px;font-size:9px;color:#9aa4b8;line-height:1.45;padding:5px 0;border-bottom:1px dashed #171e2b;}
+  .sl li:last-child{border-bottom:none;}
+  .sl li b{color:#d5dbea;font-weight:600;}
+  .sl .tag{font-size:7px;padding:0 4px;border-radius:3px;border:1px solid #2a3448;color:#6c7488;margin-left:auto;flex:0 0 auto;}
+  .sl .star{color:#ffc46b;font-size:7px;letter-spacing:-1px;flex:0 0 auto;}
+  .out{margin-top:10px;background:rgba(255,255,255,.035);border:1px solid #232c3e;border-radius:9px;padding:8px 9px;}
+  .out .k{font-size:7.5px;color:#4d566c;letter-spacing:1.2px;}
+  .out .v{font-size:11px;font-weight:700;color:#e6ebf5;margin-top:3px;}
+  .out .v span{font-size:8.5px;color:#6c7488;font-weight:400;}
+  .arrow{width:40px;flex:0 0 40px;display:flex;align-items:center;justify-content:center;color:#39445a;font-size:17px;}
+
+  .bottom{display:grid;grid-template-columns:1fr 1fr 1fr 460px;gap:14px;margin-top:20px;}
+  .p{background:linear-gradient(180deg,#0d1119,#090c12);border:1px solid var(--line);border-radius:14px;padding:14px 15px;min-height:112px;}
+  .p .n{font-size:9px;color:#4d566c;letter-spacing:1.6px;}
+  .p b{font-size:12.5px;display:block;margin-top:6px;line-height:1.4;}
+  .p p{font-size:9.5px;color:#7f8aa3;line-height:1.55;margin-top:6px;}
+  .p.big{background:linear-gradient(160deg,#141a2c,#0b0f18);border-color:#2a3552;}
+  .p.big b{font-size:12px;color:#c9d0ff;}
+  .p.big .f{font-family:"SF Mono",Menlo,monospace;font-size:8.5px;color:#93a2c9;line-height:1.7;margin-top:8px;}
+  .p.big .f em{font-style:normal;color:#ffc46b;}
+  footer{margin-top:16px;border-top:1px solid #1a2030;padding-top:11px;display:flex;justify-content:space-between;font-size:10px;color:#4d566c;}
+  footer b{color:#7f8899;font-weight:500;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="ttl">策展流水线<span>CURATION PIPELINE</span></div>
+      <div class="sub">从「一堆候选」到「你愿意一条条刷下去」，中间只有五步，但每一步都在杀掉一类垃圾。</div>
+    </div>
+    <div class="badge">每周跑一次 · 本地执行 · 人工终审 10 分钟</div>
+  </header>
+
+  <div class="pipe">
+    <div class="stage s1">
+      <div class="sno"><i>1</i><em>SEEDS</em></div>
+      <div class="st">种子</div>
+      <div class="sd">不从关键词开始，从你信得过的人开始。</div>
+      <ul class="sl">
+        <li><b>信任 UP 名单</b><span class="tag">12 个</span></li>
+        <li>飞天闪客 · 3Blue1Brown · 李沐 · 小 Lin 说 …</li>
+        <li><b>关键词表</b><span class="tag">30 组</span></li>
+        <li>「Transformer 讲解」「RAG 原理」「大模型面试」…</li>
+        <li><b>站外清单</b></li>
+        <li>知乎高赞回答 · 掘金 · GitHub awesome · Newsletter</li>
+        <li><b>你手动贴的 BV</b></li>
+        <li>刷到好东西随手丢进来，一个就够</li>
+      </ul>
+      <div class="out"><div class="k">产出</div><div class="v">≈ 120 个种子 <span>BV / UP / 关键词</span></div></div>
+    </div>
+
+    <div class="arrow">›</div>
+
+    <div class="stage s2">
+      <div class="sno"><i>2</i><em>CRAWL</em></div>
+      <div class="st">采集</div>
+      <div class="sd">四路并行，其中「相关推荐」质量最高。</div>
+      <ul class="sl">
+        <li><b>相关推荐扩 2 层</b><span class="star">★★★★</span></li>
+        <li>种子 BV → related 30 条 → 再 related 一层</li>
+        <li><b>UP 追更</b><span class="star">★★★</span></li>
+        <li>每周查信任 UP 的新投稿</li>
+        <li><b>关键词搜索</b><span class="star">★★</span></li>
+        <li>只取前 3 页，噪声大 <span class="tag">WBI</span></li>
+        <li>分区热门 / 公开收藏夹 <span class="tag">★★</span></li>
+        <li><b>评论区里的 BV 链接</b><span class="tag">捡漏</span></li>
+        <li>好视频下面常有人贴「这个讲得更好」</li>
+      </ul>
+      <div class="out"><div class="k">产出</div><div class="v">800-1500 条 <span>原始候选 / 周</span></div></div>
+    </div>
+
+    <div class="arrow">›</div>
+
+    <div class="stage s3">
+      <div class="sno"><i>3</i><em>CLEAN</em></div>
+      <div class="st">清洗去重</div>
+      <div class="sd">同一个视频会被四路重复抓到，先去重再打分。</div>
+      <ul class="sl">
+        <li><b>BV 号去重</b></li>
+        <li>最硬的主键，直接 set 掉</li>
+        <li><b>标题 SimHash</b></li>
+        <li>「同一套课」被切成 12 段发布的情况</li>
+        <li><b>切片合并 / 过滤</b></li>
+        <li>时长 &lt; 90 秒且无上下文 → 丢</li>
+        <li><b>失效与已删</b></li>
+        <li>调 view 接口，code ≠ 0 直接丢</li>
+        <li><b>中英搬运去重</b></li>
+        <li>同一内容的汉化版与原版只留一个</li>
+      </ul>
+      <div class="out"><div class="k">产出</div><div class="v">≈ 600 条 <span>去重后</span></div></div>
+    </div>
+
+    <div class="arrow">›</div>
+
+    <div class="stage s4">
+      <div class="sno"><i>4</i><em>SCORE</em></div>
+      <div class="st">打分</div>
+      <div class="sd">先杀负信号，再算分。营销号在这一步死掉。</div>
+      <ul class="sl">
+        <li><b>负信号一票否决</b></li>
+        <li>标题党 / 加群领资料 / 念稿 / 合集 42 集</li>
+        <li><b>硬信号</b></li>
+        <li>互动率 · 收藏率 · 弹幕密度 · 作者先验</li>
+        <li><b>LLM 五维评分</b><span class="tag">0.35</span></li>
+        <li>读标题 + 简介 + 20 条高赞评论</li>
+        <li><b>评论区语义</b></li>
+        <li>「讲得清楚」+ / 「求资料」−</li>
+        <li><b>是否依赖画面</b><span class="tag">关键</span></li>
+        <li>读评论判断能不能「只听」</li>
+      </ul>
+      <div class="out"><div class="k">产出</div><div class="v">≥80 分 ≈ 120 条 <span>其余进终审或丢弃</span></div></div>
+    </div>
+
+    <div class="arrow">›</div>
+
+    <div class="stage s5">
+      <div class="sno"><i>5</i><em>REVIEW</em></div>
+      <div class="st">人工终审</div>
+      <div class="sd">不看视频，只看卡片。你的品味是唯一的护城河。</div>
+      <ul class="sl">
+        <li><b>每天 10 分钟</b></li>
+        <li>只看 Top 20，一件通过 / 不要</li>
+        <li><b>卡片信息</b></li>
+        <li>标题 · 封面 · 分数 · LLM 理由 · 3 条高赞评论</li>
+        <li><b>「不要」要记原因</b></li>
+        <li>太浅 / 太营销 / 讲得乱 → 回流调权重</li>
+        <li><b>「这个 UP 不错」</b></li>
+        <li>加白名单，以后他的视频加权 <span class="tag">★</span></li>
+        <li><b>打场景标签</b><span class="tag">3 选 N</span></li>
+        <li>专注 / 刷一刷 / 只听，一个视频可占多个</li>
+      </ul>
+      <div class="out"><div class="k">产出</div><div class="v">30-50 条 / 周 <span>入库 + 打场景标签</span></div></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="p">
+      <div class="n">PRINCIPLE 01</div>
+      <b>种子扩散 &gt; 关键词搜索</b>
+      <p>搜「Transformer 讲解」出来的头部是标题党和合集；从 3B1B 的相关推荐里，能找到真正在讲原理的小 UP。</p>
+    </div>
+    <div class="p">
+      <div class="n">PRINCIPLE 02</div>
+      <b>宁缺毋滥：负信号一票否决</b>
+      <p>少 30 条好视频，你能忍；混进 3 条念稿的，你就再也不信这个站了。命中 2 条负信号直接丢。</p>
+    </div>
+    <div class="p">
+      <div class="n">PRINCIPLE 03</div>
+      <b>你的划走会变成权重</b>
+      <p>看完 / 收藏 → 作者加分；划走 / 不感兴趣 → 作者减分。每两周重算一次，白名单会自己长大。</p>
+    </div>
+    <div class="p big">
+      <div class="n">SCORE</div>
+      <b>总分公式与阈值</b>
+      <div class="f">score = 0.35·LLM + 0.25·互动率<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.15·收藏率 + 0.15·作者先验<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.10·结构 − 负信号扣分<br><br>
+      ≥80 直接入库 &nbsp;·&nbsp; 60-79 终审 &nbsp;·&nbsp; <em>&lt;60 丢弃</em></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>目标量：起步 <b>200-300 条</b>（够刷 8-12 小时），之后每周 <b>+30-50 条</b>；缺料时首页会提示「去跑一次采集」。</span>
+    <span>配套：质量评分卡 · 策展引擎设计 · 概要设计 v0.4</span>
+  </footer>
+</div>
+</body>
+</html>

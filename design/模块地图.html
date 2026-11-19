@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>AI 放映厅 · 四模块地图与内容模型</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#05060a; --panel:#0c0f16; --line:#1f2636;
+    --txt:#eef1f8; --dim:#8b94a9; --dim2:#5c6579;
+    --m1:#6c7bff; --m2:#3ddcc0; --m3:#ff7ba8; --m4:#ffc46b;
+  }
+  body{
+    width:1600px;height:806px;overflow:hidden;color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+    background:
+      radial-gradient(760px 440px at 8% 0%, rgba(108,123,255,.15), transparent 60%),
+      radial-gradient(700px 420px at 94% 4%, rgba(61,220,192,.09), transparent 60%),
+      #05060a;
+  }
+  body::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+    background-size:56px 56px;mask-image:radial-gradient(circle at 45% 25%,#000 45%,transparent 92%);
+  }
+  .wrap{position:relative;z-index:2;padding:40px 40px 0;}
+  header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;}
+  .ttl{font-size:26px;font-weight:700;letter-spacing:.4px;}
+  .ttl span{font-size:12px;color:var(--dim2);letter-spacing:2px;margin-left:10px;font-weight:500;}
+  .sub{margin-top:6px;font-size:12.5px;color:var(--dim);}
+  .badge{font-size:11px;color:#3ddcc0;border:1px solid rgba(61,220,192,.35);background:rgba(61,220,192,.08);padding:5px 10px;border-radius:8px;}
+
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .card{
+    background:linear-gradient(180deg,#0d1119,#090c12);border:1px solid var(--line);border-radius:18px;
+    padding:18px 17px 16px;position:relative;overflow:hidden;display:flex;flex-direction:column;
+  }
+  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c);}
+  .card::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:var(--c);opacity:.13;filter:blur(28px);}
+  .c1{--c:#6c7bff;} .c2{--c:#3ddcc0;} .c3{--c:#ff7ba8;} .c4{--c:#ffc46b;}
+  .ch{display:flex;align-items:center;gap:9px;position:relative;z-index:2;}
+  .ch .ico{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:15px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);}
+  .ch b{font-size:15px;display:block;letter-spacing:.3px;}
+  .ch em{font-style:normal;font-size:9px;color:var(--dim2);letter-spacing:1.6px;}
+  .one{font-size:10.5px;color:#8b94a9;line-height:1.6;margin:9px 0 12px;min-height:34px;}
+
+  .unit{background:#0b1220;border:1px solid #1b2740;border-radius:9px;padding:8px 10px;display:flex;align-items:center;gap:8px;}
+  .unit .k{font-size:8px;color:#5c6579;letter-spacing:1.2px;}
+  .unit .v{font-size:11px;font-weight:600;color:#cfd8ea;font-family:"SF Mono",Menlo,monospace;}
+  .unit .n{margin-left:auto;font-size:8px;color:var(--dim2);}
+
+  .lbl{font-size:8px;color:#4d566c;letter-spacing:1.4px;margin:12px 0 5px;}
+  .kv{display:flex;gap:7px;font-size:9.5px;line-height:1.5;color:#8b94a9;margin-bottom:4px;}
+  .kv i{font-style:normal;color:var(--c);width:30px;flex:0 0 30px;opacity:.9;}
+  .kv b{color:#c3cbdd;font-weight:600;}
+
+  .fields{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
+  .fields span{font-family:"SF Mono",Menlo,monospace;font-size:8px;color:#93a0bb;background:#111826;border:1px solid #1e2a3d;border-radius:4px;padding:1px 5px;}
+  .flow{display:flex;align-items:center;gap:5px;margin-top:10px;font-size:8px;color:#6c7488;}
+  .flow b{color:#aab4cc;font-weight:500;}
+  .flow .ar{color:#3a465c;}
+  .src{margin-top:auto;padding-top:10px;font-size:8px;color:#4d566c;border-top:1px dashed #1c2434;line-height:1.5;margin-top:auto;}
+  .src b{color:#7f8aa3;font-weight:500;}
+
+  .bottom{display:grid;grid-template-columns:330px 1fr 400px;gap:16px;margin-top:16px;}
+  .panel{background:linear-gradient(180deg,#0d1119,#090c12);border:1px solid var(--line);border-radius:16px;padding:15px 16px;}
+  .ph{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+  .ph i{width:4px;height:13px;border-radius:2px;background:linear-gradient(180deg,#6c7bff,#3ddcc0);display:block;}
+  .ph b{font-size:12.5px;}
+  .ph em{font-style:normal;font-size:8.5px;color:var(--dim2);margin-left:auto;letter-spacing:1.2px;}
+
+  .tree{font-size:9.5px;line-height:1.9;color:#8b94a9;}
+  .tree .r{color:#e6ebf5;font-weight:700;}
+  .tree .b1{color:#aab4cc;}
+  .tree .n{color:#4d566c;font-family:"SF Mono",Menlo,monospace;font-size:8px;}
+  .tree .m1t{color:#9aa6ff;} .tree .m2t{color:#7fe3c9;} .tree .m3t{color:#ff9bb5;} .tree .m4t{color:#ffc46b;}
+
+  .cap{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .cap .it{background:#10141d;border:1px solid #1c2432;border-radius:9px;padding:8px 9px;}
+  .cap .it b{font-size:9.5px;display:block;color:#c3cbdd;}
+  .cap .it p{font-size:8.5px;color:#6c7488;line-height:1.5;margin-top:3px;}
+
+  .ext{display:flex;flex-direction:column;gap:6px;}
+  .ext .e{display:flex;align-items:center;gap:9px;background:#10141d;border:1px solid #1c2432;border-radius:8px;padding:6px 9px;}
+  .ext .lv{width:26px;height:20px;flex:0 0 26px;border-radius:5px;display:grid;place-items:center;font-size:8.5px;font-weight:800;}
+  .l1{background:rgba(61,220,192,.14);color:#3ddcc0;border:1px solid rgba(61,220,192,.32);}
+  .l2{background:rgba(108,123,255,.14);color:#9aa6ff;border:1px solid rgba(108,123,255,.32);}
+  .l3{background:rgba(255,196,107,.13);color:#ffc46b;border:1px solid rgba(255,196,107,.3);}
+  .l4{background:rgba(255,123,168,.13);color:#ff7ba8;border:1px solid rgba(255,123,168,.3);}
+  .ext .t{font-size:9.5px;color:#b9c3d8;}
+  .ext .c{margin-left:auto;font-size:8.5px;color:#5c6579;}
+  footer{margin-top:14px;border-top:1px solid #1a2030;padding-top:11px;display:flex;justify-content:space-between;font-size:10px;color:#4d566c;}
+  footer b{color:#7f8899;font-weight:500;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="ttl">四模块地图 &amp; 内容模型<span>MODULE MAP</span></div>
+      <div class="sub">四个模块都是视频，差别只在「视频挂在哪根轴上」——时间、概念、题目、步骤。</div>
+    </div>
+    <div class="badge">1 套骨架 · 4 根轴 · N 个模块可插拔</div>
+  </header>
+
+  <div class="cards">
+    <!-- 1 -->
+    <div class="card c1">
+      <div class="ch"><div class="ico">🕰</div><div><b>AI 发展史</b><em>HISTORY · 128 事件</em></div></div>
+      <div class="one">从图灵测试到大模型混战，按时间把人和事串起来，看清每一步为什么发生。</div>
+      <div class="unit"><span class="k">UNIT</span><span class="v">Video</span><span class="n">挂在「事件」上</span></div>
+      <div class="lbl">关键交互</div>
+      <div class="kv"><i>列表</i><span><b>竖向时间轴</b>，年份吸顶，可拖动跳转</span></div>
+      <div class="kv"><i>详情</i><span>一句话结论 + 前后因果 + 视频 / 论文</span></div>
+      <div class="kv"><i>刷</i><span>沿时间线连播，1960 → 2026</span></div>
+      <div class="kv"><i>独有</i><span>时间视角 / 公司视角 双切换</span></div>
+      <div class="lbl">字段</div>
+      <div class="fields"><span>bvid</span><span>title</span><span>event{year,org}</span><span>why</span><span>chapters[]</span></div>
+      <div class="flow"><b>时间轴</b><span class="ar">→</span><b>事件卡</b><span class="ar">→</span><b>视频</b></div>
+      <div class="src">来源：<b>公开资料</b> + B 站纪录片 / 回顾</div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card c2">
+      <div class="ch"><div class="ico">🧠</div><div><b>底层原理</b><em>CONCEPTS · 46 概念</em></div></div>
+      <div class="one">LLM / Agent / RAG 这些词到底指什么、依赖什么、彼此什么关系。</div>
+      <div class="unit"><span class="k">UNIT</span><span class="v">Video</span><span class="n">挂在「概念」上</span></div>
+      <div class="lbl">关键交互</div>
+      <div class="kv"><i>列表</i><span><b>概念卡流</b>：一句话 + 流程图 + 前置</span></div>
+      <div class="kv"><i>详情</i><span>为什么需要 + 怎么工作 + 常见误解</span></div>
+      <div class="kv"><i>刷</i><span>左右滑；「懂了 / 再讲一遍」调顺序</span></div>
+      <div class="kv"><i>独有</i><span>DAG 前置关系 → 自动生成学习路径</span></div>
+      <div class="lbl">字段</div>
+      <div class="fields"><span>bvid</span><span>title</span><span>concept{oneLiner}</span><span>prereq[]</span><span>chapters[]</span></div>
+      <div class="flow"><b>学习路径</b><span class="ar">→</span><b>概念卡</b><span class="ar">→</span><b>讲解视频</b></div>
+      <div class="src">来源：<b>B 站讲解</b> + 经典博客 + 论文</div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card c3">
+      <div class="ch"><div class="ico">💬</div><div><b>面试实战</b><em>INTERVIEW · 42 视频</em></div></div>
+      <div class="one">一条视频讲一道题：这题在考什么、怎么答、会被怎么追问。</div>
+      <div class="unit"><span class="k">UNIT</span><span class="v">Video</span><span class="n">挂在「题目」上</span></div>
+      <div class="lbl">关键交互</div>
+      <div class="kv"><i>列表</i><span><b>标题就是题目</b>，标了「几个章节」</span></div>
+      <div class="kv"><i>详情</i><span>播放器 + 章节：题目 / 思路 / <b>参考回答</b> / 追问</span></div>
+      <div class="kv"><i>刷</i><span>连播下一题，队列按方向筛</span></div>
+      <div class="kv"><i>独有</i><span>点章节 <b>00:04:20</b> 直接跳到「参考回答」</span></div>
+      <div class="lbl">字段</div>
+      <div class="fields"><span>bvid</span><span>title</span><span>question</span><span>topic</span><span>level</span><span>chapters[]</span></div>
+      <div class="flow"><b>题库</b><span class="ar">→</span><b>视频</b><span class="ar">→</span><b>章节</b><span class="ar">→</span><b>连播</b></div>
+      <div class="src">来源：<b>B 站面试类视频</b>，标题改写为「题目」</div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card c4">
+      <div class="ch"><div class="ico">⚡</div><div><b>实操演示</b><em>BUILD · 24 视频</em></div></div>
+      <div class="one">一个人带着你从头做到尾，10 分钟做出一个能跑的东西。</div>
+      <div class="unit"><span class="k">UNIT</span><span class="v">Video</span><span class="n">挂在「项目」上</span></div>
+      <div class="lbl">关键交互</div>
+      <div class="kv"><i>列表</i><span>项目卡：几分钟 / 几步 / 要什么工具</span></div>
+      <div class="kv"><i>详情</i><span>播放器 + <b>步骤时间点</b>（建项目 / 写逻辑 / 部署）</span></div>
+      <div class="kv"><i>刷</i><span>连播；「下一步」跳转后继续播</span></div>
+      <div class="kv"><i>独有</i><span>卡住时点那一步，<b>视频回到那里重放</b></span></div>
+      <div class="lbl">字段</div>
+      <div class="fields"><span>bvid</span><span>title</span><span>project</span><span>tools[]</span><span>level</span><span>steps[{t}]</span></div>
+      <div class="flow"><b>视频库</b><span class="ar">→</span><b>视频</b><span class="ar">→</span><b>步骤</b><span class="ar">→</span><b>跟着做</b></div>
+      <div class="src">来源：<b>B 站「带你做」视频</b>，或你自己录屏</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="panel">
+      <div class="ph"><i></i><b>信息架构</b><em>SITEMAP</em></div>
+      <div class="tree">
+        <div class="r">AI 放映厅</div>
+        <div>├ <span class="b1">首页</span> <span class="n">/</span></div>
+        <div>├ <span class="m1t">① 发展史</span> <span class="n">/history</span></div>
+        <div>├ <span class="m2t">② 原理</span> <span class="n">/concepts</span></div>
+        <div>├ <span class="m3t">③ 面试</span> <span class="n">/interview</span></div>
+        <div>├ <span class="m4t">④ 实操</span> <span class="n">/build</span></div>
+        <div>├ <span class="b1">搜索</span> <span class="n">/search</span></div>
+        <div>└ <span class="b1">我的</span> <span class="n">/me</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="ph"><i></i><b>四个模块共用的骨架</b><em>SHARED SKELETON</em></div>
+      <div class="cap">
+        <div class="it"><b>Flow 容器</b><p>一次渲染 1 屏 + 预载 1 屏；纵向/横向手势；位置记忆</p></div>
+        <div class="it"><b>列表 / 详情</b><p>顶部标题 + 筛选 chips；详情底部固定操作条</p></div>
+        <div class="it"><b>进度与收藏</b><p>localStorage 带 moduleId；收藏、看到第几段</p></div>
+        <div class="it"><b>搜索与深链</b><p>全模块统一搜索；<span style="font-family:monospace">/#/interview/q-rag-01</span></p></div>
+        <div class="it"><b>时间点章节</b><p>一条视频切成 3-6 段，点段跳转；进度记到秒</p></div>
+        <div class="it"><b>导出备份</b><p>一份 JSON 带走全部进度：收藏、看到第几秒</p></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="ph"><i></i><b>以后加东西，加在哪一层</b><em>EXTENSION</em></div>
+      <div class="ext">
+        <div class="e"><span class="lv l1">L1</span><span class="t">加一条视频（改 JSON + 切章节）</span><span class="c">2 分钟</span></div>
+        <div class="e"><span class="lv l2">L2</span><span class="t">加一个方向（如「多模态」「评测」）</span><span class="c">10 分钟</span></div>
+        <div class="e"><span class="lv l3">L3</span><span class="t">加第 5 个模块（如「AI 资讯」「论文精读」）</span><span class="c">半天</span></div>
+        <div class="e"><span class="lv l4">L4</span><span class="t">加一种新轴（同一批视频换个切法，如「按公司」）</span><span class="c">1 天</span></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>核心抽象：<b>Module = { list, detail, flowItem, schema }</b> —— 新增模块只加目录 + 注册一行，首页 / 搜索 / 我的 自动生效</span>
+    <span>配套：四模块交互图（8 屏）· 概要设计 v0.3</span>
+  </footer>
+</div>
+</body>
+</html>
