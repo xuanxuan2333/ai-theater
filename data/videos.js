@@ -1,7 +1,7 @@
 /* 数据文件 · 只改这个文件 */
 window.THEATER_DATA = {
   "version": 1,
-  "updatedAt": "2026-11-19",
+  "updatedAt": "2026-11-20",
   "note": "这是唯一的数据文件。改它就等于更新网站；页面代码不用动。bvid 填真实 BV 号即可播放。",
   "modules": [
     {
@@ -35,271 +35,81 @@ window.THEATER_DATA = {
   ],
   "videos": [
     {
-      "id": "history-01",
-      "bvid": "DEMO",
-      "title": "一口气看完 AI 七十年：从图灵测试到 GPT-5",
-      "up": "AI 观察局",
-      "duration": 2530,
-      "module": "history",
+      "id": "bili-BV1NCgVzoEG9",
+      "bvid": "BV1NCgVzoEG9",
+      "title": "【闪客】一小时从函数到 Transformer",
+      "up": "飞天闪客",
+      "duration": 4157,
+      "module": "concepts",
       "modes": [
         "focus",
         "listen"
       ],
       "tags": [
-        "历史",
-        "总览"
-      ],
-      "quality": 92,
-      "views": 310000
-    },
-    {
-      "id": "history-02",
-      "bvid": "DEMO",
-      "title": "《Attention Is All You Need》到底改了什么",
-      "up": "硬核实验室",
-      "duration": 742,
-      "module": "history",
-      "modes": [
-        "focus"
-      ],
-      "tags": [
-        "Transformer",
-        "论文"
-      ],
-      "quality": 90,
-      "views": 580000
-    },
-    {
-      "id": "history-03",
-      "bvid": "DEMO",
-      "title": "Hinton 为什么离开 Google",
-      "up": "硅基漫游",
-      "duration": 548,
-      "module": "history",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "人物",
-        "安全"
-      ],
-      "quality": 88,
-      "views": 380000
-    },
-    {
-      "id": "history-04",
-      "bvid": "DEMO",
-      "title": "ChatGPT 发布那天，OpenAI 内部发生了什么",
-      "up": "AI 观察局",
-      "duration": 1860,
-      "module": "history",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "OpenAI",
-        "产品"
-      ],
-      "quality": 91,
-      "views": 570000
-    },
-    {
-      "id": "history-05",
-      "bvid": "DEMO",
-      "title": "AlphaGo 那盘棋，改变了什么",
-      "up": "棋与算力",
-      "duration": 752,
-      "module": "history",
-      "modes": [
-        "focus"
-      ],
-      "tags": [
-        "AlphaGo"
-      ],
-      "quality": 93,
-      "views": 520000
-    },
-    {
-      "id": "history-06",
-      "bvid": "DEMO",
-      "title": "深度学习的三次寒冬，以及它为什么没死",
-      "up": "AI 观察局",
-      "duration": 1910,
-      "module": "history",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "历史"
-      ],
-      "quality": 87,
-      "views": 320000
-    },
-    {
-      "id": "history-07",
-      "bvid": "DEMO",
-      "title": "OpenAI 十年：从非营利实验室到万亿巨头",
-      "up": "商业深潜",
-      "duration": 2880,
-      "module": "history",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "OpenAI",
-        "商业"
-      ],
-      "quality": 89,
-      "views": 310000
-    },
-    {
-      "id": "history-08",
-      "bvid": "DEMO",
-      "title": "3 分钟讲完 Transformer 那篇论文",
-      "up": "硬核实验室",
-      "duration": 180,
-      "module": "history",
-      "modes": [
-        "relax"
-      ],
-      "tags": [
-        "论文",
-        "速看"
-      ],
-      "quality": 86,
-      "views": 350000
-    },
-    {
-      "id": "history-09",
-      "bvid": "DEMO",
-      "title": "2024 年 AI 圈最重要的 5 件事",
-      "up": "AI 观察局",
-      "duration": 280,
-      "module": "history",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "盘点"
+        "Transformer"
       ],
       "quality": 84,
-      "views": 570000
+      "views": 1479280,
+      "cover": "https://i0.hdslb.com/bfs/archive/64dad0d281eb34c7d870e1e5e51cb01b0e93a6e8.jpg",
+      "curate": {
+        "rate": 12.41,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "history-10",
-      "bvid": "DEMO",
-      "title": "GPT-4 发布会 3 分钟精华",
-      "up": "AI 观察局",
-      "duration": 200,
-      "module": "history",
+      "id": "bili-BV1uGA3eLEeu",
+      "bvid": "BV1uGA3eLEeu",
+      "title": "从函数到神经网络【AI入门01】",
+      "up": "飞天闪客",
+      "duration": 568,
+      "module": "concepts",
       "modes": [
         "listen",
         "relax"
       ],
       "tags": [
-        "发布会"
+        "神经网络"
       ],
-      "quality": 82,
-      "views": 400000
+      "quality": 84,
+      "views": 421401,
+      "cover": "https://i2.hdslb.com/bfs/archive/a2d910e6b6db8f193842bb6e00634ddbeb0a08ed.jpg",
+      "curate": {
+        "rate": 19.31,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "history-11",
-      "bvid": "DEMO",
-      "title": "为什么 2023 年所有公司都在做 AI",
-      "up": "商业深潜",
-      "duration": 268,
-      "module": "history",
+      "id": "bili-BV1ojfDBSEPv",
+      "bvid": "BV1ojfDBSEPv",
+      "title": "【闪客】一口气拆穿Skill/MCP/RAG/Agent/OpenClaw底层逻辑",
+      "up": "飞天闪客",
+      "duration": 886,
+      "module": "concepts",
       "modes": [
-        "listen",
-        "relax"
+        "focus",
+        "listen"
       ],
       "tags": [
-        "行业"
+        "RAG",
+        "Agent"
       ],
       "quality": 85,
-      "views": 150000
+      "views": 946068,
+      "cover": "https://i2.hdslb.com/bfs/archive/7d5e410e4ee85516b21e025c6b2ff32c5c7d9cd7.jpg",
+      "curate": {
+        "rate": 21.13,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "history-12",
-      "bvid": "DEMO",
-      "title": "Sora 出现后，视频生成走到哪一步了",
-      "up": "AI 观察局",
-      "duration": 284,
-      "module": "history",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "视频生成"
-      ],
-      "quality": 86,
-      "views": 140000
-    },
-    {
-      "id": "history-13",
-      "bvid": "DEMO",
-      "title": "AI 寒冬是什么？2 分钟说清",
-      "up": "硅基漫游",
-      "duration": 140,
-      "module": "history",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "历史",
-        "速看"
-      ],
-      "quality": 83,
-      "views": 540000
-    },
-    {
-      "id": "history-14",
-      "bvid": "DEMO",
-      "title": "OpenAI 宫斗 48 小时",
-      "up": "商业深潜",
-      "duration": 295,
-      "module": "history",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "OpenAI",
-        "八卦"
-      ],
-      "quality": 88,
-      "views": 350000
-    },
-    {
-      "id": "history-15",
-      "bvid": "DEMO",
-      "title": "黄仁勋：AI 的 iPhone 时刻到了",
-      "up": "AI 观察局",
-      "duration": 240,
-      "module": "history",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "观点"
-      ],
-      "quality": 84,
-      "views": 330000
-    },
-    {
-      "id": "concepts-01",
-      "bvid": "DEMO",
-      "title": "Transformer 到底在干嘛？用一个类比讲清楚",
+      "id": "bili-BV1C3dqYxE3q",
+      "bvid": "BV1C3dqYxE3q",
+      "title": "Transformer 其实是个简单到令人困惑的模型【AI入门06】",
       "up": "飞天闪客",
-      "duration": 444,
+      "duration": 607,
       "module": "concepts",
       "modes": [
         "focus",
@@ -307,579 +117,210 @@ window.THEATER_DATA = {
       ],
       "tags": [
         "Transformer",
-        "讲人话"
+        "注意力"
       ],
-      "quality": 95,
-      "views": 430000
+      "quality": 78,
+      "views": 337566,
+      "cover": "https://i1.hdslb.com/bfs/archive/17429014352b318b208beed7518f02f35183e34c.jpg",
+      "curate": {
+        "rate": 9.73,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "concepts-02",
-      "bvid": "DEMO",
-      "title": "注意力机制：Q、K、V 到底在算什么",
-      "up": "硬核实验室",
-      "duration": 690,
+      "id": "bili-BV13z421U7cs",
+      "bvid": "BV13z421U7cs",
+      "title": "【官方双语】GPT是什么？直观解释Transformer | 深度学习第5章",
+      "up": "3Blue1Brown",
+      "duration": 1634,
       "module": "concepts",
       "modes": [
-        "focus"
+        "focus",
+        "listen"
       ],
       "tags": [
-        "Attention"
+        "Transformer",
+        "注意力"
       ],
-      "quality": 91,
-      "views": 420000
+      "quality": 78,
+      "views": 825163,
+      "cover": "https://i0.hdslb.com/bfs/archive/f2b59e2ba81081f22640102d542b01a8bb0c41f0.jpg",
+      "curate": {
+        "rate": 10.04,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "concepts-03",
-      "bvid": "DEMO",
-      "title": "KV Cache：让推理快 10 倍的技巧",
-      "up": "硬核实验室",
-      "duration": 812,
+      "id": "bili-BV1TZ421j7Ke",
+      "bvid": "BV1TZ421j7Ke",
+      "title": "【官方双语】直观解释注意力机制，Transformer的核心 | 【深度学习第6章】",
+      "up": "3Blue1Brown",
+      "duration": 1570,
       "module": "concepts",
       "modes": [
-        "focus"
+        "focus",
+        "listen"
       ],
       "tags": [
-        "推理",
-        "优化"
+        "Transformer",
+        "注意力"
       ],
-      "quality": 90,
-      "views": 530000
+      "quality": 80,
+      "views": 954163,
+      "cover": "https://i1.hdslb.com/bfs/archive/407cdaf692b36679f8820713f574c62ca293279b.jpg",
+      "curate": {
+        "rate": 10.09,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "concepts-04",
-      "bvid": "DEMO",
-      "title": "RAG 全流程：从切分到重排",
-      "up": "AI 观察局",
-      "duration": 1660,
+      "id": "bili-BV1JLN2z4EZQ",
+      "bvid": "BV1JLN2z4EZQ",
+      "title": "RAG 工作机制详解——一个高质量知识库背后的技术全流程",
+      "up": "马克的技术工作坊",
+      "duration": 1022,
       "module": "concepts",
       "modes": [
-        "focus"
+        "focus",
+        "listen"
       ],
       "tags": [
         "RAG"
       ],
       "quality": 92,
-      "views": 140000
+      "views": 463672,
+      "cover": "https://i1.hdslb.com/bfs/archive/9aece9518fe00d08450b731fb8d2a2e748131765.jpg",
+      "curate": {
+        "rate": 13.56,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "concepts-05",
-      "bvid": "DEMO",
-      "title": "RLHF 和 DPO：对齐到底在做什么",
-      "up": "硅基漫游",
-      "duration": 1450,
-      "module": "concepts",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "对齐"
-      ],
-      "quality": 90,
-      "views": 90000
-    },
-    {
-      "id": "concepts-06",
-      "bvid": "DEMO",
-      "title": "Agent 是什么？从 ReAct 讲起",
-      "up": "AI 观察局",
-      "duration": 960,
-      "module": "concepts",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "Agent"
-      ],
-      "quality": 93,
-      "views": 310000
-    },
-    {
-      "id": "concepts-07",
-      "bvid": "DEMO",
-      "title": "从零手写一个最小的 Transformer",
-      "up": "代码之外",
-      "duration": 3240,
+      "id": "bili-BV1TSg7zuEqR",
+      "bvid": "BV1TSg7zuEqR",
+      "title": "Agent 的概念、原理与构建模式 —— 从零打造一个简化版的 Claude Code",
+      "up": "马克的技术工作坊",
+      "duration": 1687,
       "module": "concepts",
       "modes": [
         "focus"
       ],
       "tags": [
-        "动手"
+        "Agent",
+        "Claude Code"
       ],
-      "quality": 95,
-      "views": 220000
+      "quality": 85,
+      "views": 610271,
+      "cover": "https://i1.hdslb.com/bfs/archive/c7692cea58939a8d2173d3fd890ba5fd4ad2cde1.jpg",
+      "curate": {
+        "rate": 12.22,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "concepts-08",
-      "bvid": "DEMO",
-      "title": "推理模型（o1/R1）到底在「想」什么",
-      "up": "硬核实验室",
-      "duration": 1520,
-      "module": "concepts",
+      "id": "bili-BV1Te4y1w7D6",
+      "bvid": "BV1Te4y1w7D6",
+      "title": "ChatGPT诞生记：先捞钱，再谈理想｜OpenAI翻身史",
+      "up": "林亦LYi",
+      "duration": 1548,
+      "module": "history",
       "modes": [
         "focus",
         "listen"
       ],
       "tags": [
-        "CoT"
+        "发展史"
       ],
-      "quality": 94,
-      "views": 120000
+      "quality": 80,
+      "views": 450852,
+      "cover": "https://i0.hdslb.com/bfs/archive/97be8e34cae47767a5c84444802b69e619ad9133.jpg",
+      "curate": {
+        "rate": 13.14,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "concepts-09",
-      "bvid": "DEMO",
-      "title": "为什么 Transformer 要除以 √d_k",
-      "up": "算法小张",
-      "duration": 236,
-      "module": "concepts",
-      "modes": [
-        "relax"
-      ],
-      "tags": [
-        "Attention",
-        "数学"
-      ],
-      "quality": 89,
-      "views": 80000
-    },
-    {
-      "id": "concepts-10",
-      "bvid": "DEMO",
-      "title": "Function Calling 的底层就是 JSON 吗",
-      "up": "硬核实验室",
-      "duration": 274,
-      "module": "concepts",
-      "modes": [
-        "relax"
-      ],
-      "tags": [
-        "Agent",
-        "工具"
-      ],
-      "quality": 85,
-      "views": 370000
-    },
-    {
-      "id": "concepts-11",
-      "bvid": "DEMO",
-      "title": "上下文窗口越大越好吗",
-      "up": "算法小张",
-      "duration": 290,
-      "module": "concepts",
+      "id": "bili-BV1dgnG62E33",
+      "bvid": "BV1dgnG62E33",
+      "title": "一口气看完AI发展史｜时间开始加速了",
+      "up": "小然今天吃什么",
+      "duration": 328,
+      "module": "history",
       "modes": [
         "listen",
         "relax"
       ],
       "tags": [
-        "上下文"
+        "发展史"
       ],
-      "quality": 86,
-      "views": 540000
+      "quality": 70,
+      "views": 355072,
+      "cover": "https://i0.hdslb.com/bfs/archive/cf03c9172be15342173f525e620d46b0fc9031de.jpg",
+      "curate": {
+        "rate": 7.22,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "concepts-12",
-      "bvid": "DEMO",
-      "title": "提示词工程已死？上下文工程才是答案",
-      "up": "AI 观察局",
-      "duration": 286,
-      "module": "concepts",
+      "id": "bili-BV1MY4y1R7EN",
+      "bvid": "BV1MY4y1R7EN",
+      "title": "【渐构】万字科普GPT4为何会颠覆现有工作流；为何你要关注微软Copilot、文心一言等大模型",
+      "up": "YJango",
+      "duration": 3016,
+      "module": "history",
       "modes": [
-        "listen",
-        "relax"
+        "focus",
+        "listen"
       ],
       "tags": [
-        "提示词"
+        "AI"
       ],
       "quality": 84,
-      "views": 590000
+      "views": 3212287,
+      "cover": "https://i2.hdslb.com/bfs/archive/0ee0b99284f3e41e7ae78d421a5cde510cc80a7e.jpg",
+      "curate": {
+        "rate": 18.58,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "concepts-13",
-      "bvid": "DEMO",
-      "title": "3 分钟看懂 Embedding",
-      "up": "机器学习小学徒",
-      "duration": 170,
-      "module": "concepts",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "Embedding"
-      ],
-      "quality": 87,
-      "views": 470000
-    },
-    {
-      "id": "concepts-14",
-      "bvid": "DEMO",
-      "title": "什么是 MoE？一个比喻讲明白",
-      "up": "硬核实验室",
-      "duration": 190,
-      "module": "concepts",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "MoE"
-      ],
-      "quality": 86,
-      "views": 430000
-    },
-    {
-      "id": "concepts-15",
-      "bvid": "DEMO",
-      "title": "Token 是什么？为什么中文更贵",
-      "up": "算法小张",
-      "duration": 160,
-      "module": "concepts",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "Token"
-      ],
-      "quality": 85,
-      "views": 50000
-    },
-    {
-      "id": "interview-01",
-      "bvid": "DEMO",
-      "title": "RAG 召回率低，你会怎么排查？",
-      "up": "面试官老张",
-      "duration": 1564,
-      "module": "interview",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "RAG",
-        "排查"
-      ],
-      "quality": 90,
-      "views": 410000
-    },
-    {
-      "id": "interview-02",
-      "bvid": "DEMO",
-      "title": "Agent 工具调用失败了，怎么让它自己恢复？",
-      "up": "AI 面试王",
-      "duration": 1872,
-      "module": "interview",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "Agent"
-      ],
-      "quality": 87,
-      "views": 280000
-    },
-    {
-      "id": "interview-03",
-      "bvid": "DEMO",
-      "title": "怎么评估一个 RAG 系统好不好？",
-      "up": "面试官老张",
-      "duration": 1367,
-      "module": "interview",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "RAG",
-        "评估"
-      ],
-      "quality": 89,
-      "views": 310000
-    },
-    {
-      "id": "interview-04",
-      "bvid": "DEMO",
-      "title": "大模型面试：怎么讲清楚你项目的难点？",
-      "up": "AI 面试王",
-      "duration": 1450,
-      "module": "interview",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "项目"
-      ],
-      "quality": 86,
-      "views": 440000
-    },
-    {
-      "id": "interview-05",
-      "bvid": "DEMO",
-      "title": "为什么你的 Agent 总是循环调用工具？",
-      "up": "AI 面试王",
-      "duration": 1680,
-      "module": "interview",
+      "id": "bili-BV11LPWzNEkm",
+      "bvid": "BV11LPWzNEkm",
+      "title": "全面解析“世界模型”：定义、路线、实践与AGI的更近一步【硅谷101】",
+      "up": "硅谷101",
+      "duration": 2976,
+      "module": "history",
       "modes": [
         "focus",
         "listen"
       ],
       "tags": [
         "Agent",
-        "工程"
+        "发展史"
       ],
-      "quality": 90,
-      "views": 500000
+      "quality": 73,
+      "views": 317227,
+      "cover": "https://i2.hdslb.com/bfs/archive/11c45d3be6a74137d3889bef7f5a5c014dac8ba5.jpg",
+      "curate": {
+        "rate": 8.68,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "interview-06",
-      "bvid": "DEMO",
-      "title": "线上大模型推理成本怎么降？",
-      "up": "面试官老张",
-      "duration": 1930,
-      "module": "interview",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "工程",
-        "成本"
-      ],
-      "quality": 91,
-      "views": 420000
-    },
-    {
-      "id": "interview-07",
-      "bvid": "DEMO",
-      "title": "多模态模型是怎么对齐图文空间的？",
-      "up": "硬核实验室",
-      "duration": 1240,
-      "module": "interview",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "多模态"
-      ],
-      "quality": 85,
-      "views": 440000
-    },
-    {
-      "id": "interview-08",
-      "bvid": "DEMO",
-      "title": "Transformer 里为什么要除以 √d_k？",
-      "up": "算法小张",
-      "duration": 1110,
-      "module": "interview",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "LLM",
-        "基础"
-      ],
-      "quality": 88,
-      "views": 130000
-    },
-    {
-      "id": "interview-09",
-      "bvid": "DEMO",
-      "title": "手撕注意力机制，面试官想看什么？",
-      "up": "算法小张",
-      "duration": 268,
-      "module": "interview",
-      "modes": [
-        "relax"
-      ],
-      "tags": [
-        "手写"
-      ],
-      "quality": 85,
-      "views": 420000
-    },
-    {
-      "id": "interview-10",
-      "bvid": "DEMO",
-      "title": "被问「你做过最难的技术决策」，怎么答？",
-      "up": "AI 面试王",
-      "duration": 280,
-      "module": "interview",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "软技能"
-      ],
-      "quality": 88,
-      "views": 30000
-    },
-    {
-      "id": "interview-11",
-      "bvid": "DEMO",
-      "title": "自我介绍 3 分钟模板",
-      "up": "AI 面试王",
-      "duration": 170,
-      "module": "interview",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "开场"
-      ],
-      "quality": 84,
-      "views": 560000
-    },
-    {
-      "id": "interview-12",
-      "bvid": "DEMO",
-      "title": "LoRA 微调的原理，一句话说清",
-      "up": "硬核实验室",
-      "duration": 290,
-      "module": "interview",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "微调"
-      ],
-      "quality": 88,
-      "views": 360000
-    },
-    {
-      "id": "interview-13",
-      "bvid": "DEMO",
-      "title": "面试被问不会的问题，怎么救",
-      "up": "AI 面试王",
-      "duration": 200,
-      "module": "interview",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "应变"
-      ],
-      "quality": 86,
-      "views": 70000
-    },
-    {
-      "id": "interview-14",
-      "bvid": "DEMO",
-      "title": "项目讲不清？用 STAR 三步",
-      "up": "AI 面试王",
-      "duration": 240,
-      "module": "interview",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "表达"
-      ],
-      "quality": 87,
-      "views": 60000
-    },
-    {
-      "id": "interview-15",
-      "bvid": "DEMO",
-      "title": "反问环节问什么加分",
-      "up": "AI 面试王",
-      "duration": 150,
-      "module": "interview",
-      "modes": [
-        "listen",
-        "relax"
-      ],
-      "tags": [
-        "收尾"
-      ],
-      "quality": 83,
-      "views": 50000
-    },
-    {
-      "id": "build-01",
-      "bvid": "DEMO",
-      "title": "10 分钟用 Cursor 做一个番茄钟",
-      "up": "野生程序员阿柯",
-      "duration": 600,
-      "module": "build",
-      "modes": [
-        "focus"
-      ],
-      "tags": [
-        "Cursor",
-        "零基础"
-      ],
-      "quality": 90,
-      "views": 150000
-    },
-    {
-      "id": "build-02",
-      "bvid": "DEMO",
-      "title": "8 分钟做一个 AI 图片生成站",
-      "up": "野生程序员阿柯",
-      "duration": 480,
-      "module": "build",
-      "modes": [
-        "focus"
-      ],
-      "tags": [
-        "API",
-        "React"
-      ],
-      "quality": 88,
-      "views": 590000
-    },
-    {
-      "id": "build-03",
-      "bvid": "DEMO",
-      "title": "15 分钟搭一个本地知识库",
-      "up": "硬核实验室",
-      "duration": 900,
-      "module": "build",
-      "modes": [
-        "focus"
-      ],
-      "tags": [
-        "RAG",
-        "本地"
-      ],
-      "quality": 92,
-      "views": 180000
-    },
-    {
-      "id": "build-04",
-      "bvid": "DEMO",
-      "title": "用 Cursor 一天做完一个小程序",
-      "up": "野生程序员阿柯",
-      "duration": 2400,
-      "module": "build",
-      "modes": [
-        "focus"
-      ],
-      "tags": [
-        "Cursor",
-        "实战"
-      ],
-      "quality": 91,
-      "views": 410000
-    },
-    {
-      "id": "build-05",
-      "bvid": "DEMO",
-      "title": "20 分钟做一个会自己找资料的 Agent",
-      "up": "硬核实验室",
-      "duration": 1200,
+      "id": "bili-BV14rzQB9EJj",
+      "bvid": "BV14rzQB9EJj",
+      "title": "Claude Code 从 0 到 1 全攻略：MCP / SubAgent / Agent Skill / Hook / 图片 / 上下文处理/ 后台任务",
+      "up": "马克的技术工作坊",
+      "duration": 2685,
       "module": "build",
       "modes": [
         "focus"
@@ -888,178 +329,222 @@ window.THEATER_DATA = {
         "Agent",
         "实战"
       ],
-      "quality": 93,
-      "views": 40000
+      "quality": 84,
+      "views": 1347589,
+      "cover": "https://i1.hdslb.com/bfs/archive/c4653ea34ff39b4edb01130b2482f81d150f673e.jpg",
+      "curate": {
+        "rate": 14.7,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "build-06",
-      "bvid": "DEMO",
-      "title": "vibe coding 一周，我踩过的 7 个坑",
-      "up": "代码之外",
-      "duration": 1380,
-      "module": "build",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "经验",
-        "踩坑"
-      ],
-      "quality": 88,
-      "views": 520000
-    },
-    {
-      "id": "build-07",
-      "bvid": "DEMO",
-      "title": "不会写代码，怎么让 AI 帮你上线一个网站",
-      "up": "野生程序员阿柯",
-      "duration": 452,
-      "module": "build",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "部署",
-        "零基础"
-      ],
-      "quality": 89,
-      "views": 320000
-    },
-    {
-      "id": "build-08",
-      "bvid": "DEMO",
-      "title": "把微信公众号接上大模型",
-      "up": "代码之外",
-      "duration": 1860,
+      "id": "bili-BV1BvR1BtEFD",
+      "bvid": "BV1BvR1BtEFD",
+      "title": "Vibe Coding纯小白教程：对AI说话就做出软件。手把手带你做出1个软件！",
+      "up": "大牙大-",
+      "duration": 946,
       "module": "build",
       "modes": [
         "focus"
       ],
       "tags": [
-        "微信",
-        "API"
+        "实战",
+        "Vibe Coding"
       ],
-      "quality": 85,
-      "views": 230000
+      "quality": 84,
+      "views": 302321,
+      "cover": "https://i1.hdslb.com/bfs/archive/c965767b57bb5f7d53097dd38755b56b5d95e9ba.jpg",
+      "curate": {
+        "rate": 14.19,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "build-09",
-      "bvid": "DEMO",
-      "title": "5 分钟做一个「猜词」小游戏",
-      "up": "野生程序员阿柯",
-      "duration": 300,
+      "id": "bili-BV15stoz6E8X",
+      "bvid": "BV15stoz6E8X",
+      "title": "完全用AI开发网站？我做了个全栈项目！",
+      "up": "小枫社长",
+      "duration": 2285,
       "module": "build",
       "modes": [
-        "relax"
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "实战"
+      ],
+      "quality": 82,
+      "views": 225972,
+      "cover": "https://i0.hdslb.com/bfs/archive/062ab36435c407cc3f033d8dbd7332b81e939ce8.jpg",
+      "curate": {
+        "rate": 10.84,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
+    },
+    {
+      "id": "bili-BV1sZMq6qEko",
+      "bvid": "BV1sZMq6qEko",
+      "title": "从0做出你的第一个App ｜ 零基础AI编程保姆教程",
+      "up": "木子不写代码",
+      "duration": 1513,
+      "module": "build",
+      "modes": [
+        "focus"
       ],
       "tags": [
         "提示词",
-        "零基础"
+        "实战"
       ],
-      "quality": 87,
-      "views": 310000
+      "quality": 84,
+      "views": 183399,
+      "cover": "https://i1.hdslb.com/bfs/archive/02229a1f740f5d571cf5da4e26bcc2ef1d531fca.jpg",
+      "curate": {
+        "rate": 15.97,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "build-10",
-      "bvid": "DEMO",
-      "title": "3 分钟用 AI 做个 PPT",
-      "up": "办公达人",
-      "duration": 180,
-      "module": "build",
+      "id": "bili-BV1XzyWY6EJC",
+      "bvid": "BV1XzyWY6EJC",
+      "title": "大模型面试现场【八股、项目细节拷问】",
+      "up": "丁师兄大模型",
+      "duration": 885,
+      "module": "interview",
       "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "面试"
+      ],
+      "quality": 67,
+      "views": 91568,
+      "cover": "https://i0.hdslb.com/bfs/archive/1aa5d0628e95f0e4ed92b3dc3befb268ff86cf78.jpg",
+      "curate": {
+        "rate": 5.87,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
+    },
+    {
+      "id": "bili-BV18G4y1P7YF",
+      "bvid": "BV18G4y1P7YF",
+      "title": "我有一些很变态但能帮你通过AI面试的技巧",
+      "up": "万万万森说",
+      "duration": 342,
+      "module": "interview",
+      "modes": [
+        "listen",
         "relax"
       ],
       "tags": [
-        "办公",
-        "PPT"
+        "面试"
       ],
-      "quality": 82,
-      "views": 400000
+      "quality": 65,
+      "views": 239754,
+      "cover": "https://i2.hdslb.com/bfs/archive/77533e1a8b4a129b3e69ae3fb640e9b0a3994d41.jpg",
+      "curate": {
+        "rate": 7.27,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "build-11",
-      "bvid": "DEMO",
-      "title": "5 分钟给网页加个 AI 搜索框",
-      "up": "代码之外",
-      "duration": 290,
-      "module": "build",
+      "id": "bili-BV1YRG46eE1n",
+      "bvid": "BV1YRG46eE1n",
+      "title": "Agent、Skill、Harness啥意思？一次性讲明白AI技术名词！",
+      "up": "千问AI平台",
+      "duration": 376,
+      "module": "concepts",
       "modes": [
-        "relax"
-      ],
-      "tags": [
-        "前端",
-        "API"
-      ],
-      "quality": 86,
-      "views": 560000
-    },
-    {
-      "id": "build-12",
-      "bvid": "DEMO",
-      "title": "2 分钟做一个二维码名片",
-      "up": "办公达人",
-      "duration": 120,
-      "module": "build",
-      "modes": [
-        "relax"
-      ],
-      "tags": [
-        "小工具"
-      ],
-      "quality": 80,
-      "views": 150000
-    },
-    {
-      "id": "build-13",
-      "bvid": "DEMO",
-      "title": "4 分钟用 AI 做一张活动海报",
-      "up": "设计小助手",
-      "duration": 240,
-      "module": "build",
-      "modes": [
-        "relax"
-      ],
-      "tags": [
-        "设计"
-      ],
-      "quality": 83,
-      "views": 360000
-    },
-    {
-      "id": "build-14",
-      "bvid": "DEMO",
-      "title": "3 分钟把 PDF 变成问答机器人",
-      "up": "代码之外",
-      "duration": 200,
-      "module": "build",
-      "modes": [
+        "listen",
         "relax"
       ],
       "tags": [
         "RAG",
-        "PDF"
+        "Agent"
       ],
-      "quality": 89,
-      "views": 170000
+      "quality": 84,
+      "views": 725637,
+      "cover": "https://i2.hdslb.com/bfs/archive/dd5278e722a31e1fbbcf5e907a5ab13f3a4b62b7.jpg",
+      "curate": {
+        "rate": 13.42,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     },
     {
-      "id": "build-15",
-      "bvid": "DEMO",
-      "title": "4 分钟做一个 AI 头像生成器",
-      "up": "野生程序员阿柯",
-      "duration": 240,
-      "module": "build",
+      "id": "bili-BV1aeLqzUE6L",
+      "bvid": "BV1aeLqzUE6L",
+      "title": "10分钟讲清楚 Prompt, Agent, MCP 是什么",
+      "up": "隔壁的程序员老王",
+      "duration": 699,
+      "module": "concepts",
       "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "Agent",
+        "提示词"
+      ],
+      "quality": 84,
+      "views": 915675,
+      "cover": "https://i1.hdslb.com/bfs/archive/011b2fc82d134e0b619177d067a2c05ac78f5fc8.jpg",
+      "curate": {
+        "rate": 14.79,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
+    },
+    {
+      "id": "bili-BV1S5miBvEsu",
+      "bvid": "BV1S5miBvEsu",
+      "title": "Token 到底是什么？—— 揭秘大模型背后的“文字压缩术”",
+      "up": "马克的技术工作坊",
+      "duration": 632,
+      "module": "concepts",
+      "modes": [
+        "focus"
+      ],
+      "tags": [
+        "Transformer"
+      ],
+      "quality": 75,
+      "views": 295271,
+      "cover": "https://i0.hdslb.com/bfs/archive/90d448ee2f3dd419cbc9a201c11b60c9c09f3f7f.jpg",
+      "curate": {
+        "rate": 8.82,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
+    },
+    {
+      "id": "bili-BV1RV4y1R7WM",
+      "bvid": "BV1RV4y1R7WM",
+      "title": "这波AI与往年到底有什么本质区别？AI突变的底层逻辑",
+      "up": "想象研究所",
+      "duration": 460,
+      "module": "history",
+      "modes": [
+        "listen",
         "relax"
       ],
       "tags": [
-        "图像",
-        "API"
+        "发展史"
       ],
-      "quality": 85,
-      "views": 430000
+      "quality": 79,
+      "views": 536233,
+      "cover": "https://i0.hdslb.com/bfs/archive/f55ad86f871e6a0ce11349b4041516d5fcd7a8db.jpg",
+      "curate": {
+        "rate": 10.26,
+        "pick": "manual",
+        "at": "2026-11-20"
+      }
     }
   ]
 };

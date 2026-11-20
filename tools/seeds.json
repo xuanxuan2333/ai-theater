@@ -1,0 +1,16 @@
+{
+  "_说明": "种子决定抓到什么。B 站相关推荐会围绕它们扩散，只放你真正认可的视频。",
+  "seeds": [
+    "BV1xH5Dz3Eox",
+    "BV1h3HTzyExt",
+    "BV1ys411472E",
+    "BV1ajZ7BmEDn",
+    "BV1a34y137zi"
+  ],
+  "keywords": {
+    "history": ["AI 发展史", "OpenAI 发展史", "大模型 发展 历程", "人工智能 历史"],
+    "concepts": ["大模型 原理", "Transformer 讲解", "RAG 原理", "Agent 原理", "注意力机制 讲解"],
+    "interview": ["大模型面试题", "AI 面试 怎么答", "算法工程师 大模型 面试", "Agent 面试", "RAG 面试题"],
+    "build": ["Cursor 做网站", "用AI做一个游戏", "vibe coding 实战", "Claude Code 实战", "10分钟 做出"]
+  }
+}

@@ -41,9 +41,17 @@ const fmtL = (s) => (s >= 3600 ? `${Math.floor(s / 3600)} 小时 ${Math.round((s
 
 /* ---------------- queue ---------------- */
 function buildQueue(module, mode) {
-  const pool = VIDEOS.filter(
-    (v) => v.module === module && v.modes.includes(mode) && !isSeen(v.id) && !S.disliked[v.id]
-  );
+  const ok = (v) => !isSeen(v.id) && !S.disliked[v.id];
+  let pool = VIDEOS.filter((v) => v.module === module && v.modes.includes(mode) && ok(v));
+
+  // 刷一刷兜底：短视频不足 3 条时，补这个模块里时长最短的，免得开天窗
+  if (mode === 'relax' && pool.length < 3) {
+    const extra = VIDEOS
+      .filter((v) => v.module === module && !v.modes.includes('relax') && ok(v))
+      .sort((a, b) => a.duration - b.duration)
+      .slice(0, 3 - pool.length);
+    pool = pool.concat(extra);
+  }
   // 质量优先 + 一点随机，保证每次进来的顺序不一样
   return pool
     .map((v) => ({ v, k: v.quality + Math.random() * 9 }))
@@ -330,8 +338,8 @@ function renderList(module) {
 
   const all = VIDEOS.filter((v) => v.module === module);
   const items = all.filter((v) => {
-    if (listFilter === 'short') return v.duration <= 300;
-    if (listFilter === 'long') return v.duration > 300;
+    if (listFilter === 'short') return v.duration <= 600;
+    if (listFilter === 'long') return v.duration > 600;
     if (listFilter === 'unseen') return !isSeen(v.id);
     return true;
   });
@@ -364,7 +372,7 @@ function renderList(module) {
         <span class="counter">按 UP 分组</span>
       </div>
       <div class="chips">
-        ${[['all', '全部'], ['short', '短视频 ≤5分'], ['long', '长视频 >5分'], ['unseen', '未看']]
+        ${[['all', '全部'], ['short', '短视频 ≤10分'], ['long', '长视频 >10分'], ['unseen', '未看']]
           .map(([k, l]) => `<button class="chip ${listFilter === k ? 'on' : ''}" data-filter="${k}">${l}</button>`).join('')}
       </div>
       ${body || '<div class="empty">没有符合条件的视频</div>'}
