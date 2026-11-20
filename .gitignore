@@ -1,2 +1,6 @@
 .DS_Store
-design/out/archive/
+design/
+docs/
+tools/cookie.txt
+tools/candidates.json
+tools/out/
