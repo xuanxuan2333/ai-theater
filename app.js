@@ -259,7 +259,9 @@ function renderFeed(module, mode) {
       </div>` : ''}
       <div class="info">
         <div class="vtitle">${v.title}</div>
-        <div class="vmeta"><span class="dot"></span><span>${v.up}</span><span>· ${(v.views / 10000).toFixed(1)} 万播放</span></div>
+        <div class="vmeta"><span class="dot"></span><span>${v.up}</span><span>· ${(v.views / 10000).toFixed(1)} 万播放</span>
+          <a class="bili-link" href="https://www.bilibili.com/video/${v.bvid}" target="_blank" rel="noopener">去 B 站看 ›</a>
+        </div>
         <div class="acts">
           <button class="act like" data-like="${v.id}">👍 喜欢</button>
           <button class="act dis" data-dislike="${v.id}">👎 不感兴趣</button>
@@ -322,11 +324,31 @@ function goNext() {
 
 function mountPlayer(stage, v) {
   if (!v.bvid || v.bvid === 'DEMO') {
-    toast('示例数据：在 data/videos.json 里填真实 bvid 就能播');
+    toast('这条还是占位数据');
     return;
   }
-  const url = `https://player.bilibili.com/player.html?bvid=${v.bvid}&autoplay=1&danmaku=0&high_quality=1`;
-  stage.innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="no-referrer" scrolling="no" frameborder="0" allowfullscreen></iframe>`;
+  // 用 B 站官方嵌入参数：isOutside + aid + cid，缺一个都可能黑屏
+  const q = new URLSearchParams({
+    isOutside: 'true',
+    aid: v.aid || '',
+    bvid: v.bvid,
+    cid: v.cid || '',
+    p: '1',
+    autoplay: '1',
+    high_quality: '1',
+    danmaku: '0',
+  });
+  const src = `https://player.bilibili.com/player.html?${q.toString()}`;
+  stage.innerHTML =
+    `<iframe src="${src}" allow="autoplay; fullscreen; picture-in-picture"` +
+    ` scrolling="no" frameborder="0" allowfullscreen></iframe>` +
+    `<div class="play-hint">点播放器里的 ▶ 开始播放（B 站限制自动播放）</div>`;
+
+  // 提示 5 秒后淡出，不挡操作
+  setTimeout(() => {
+    const h = stage.querySelector('.play-hint');
+    if (h) h.classList.add('gone');
+  }, 5000);
 }
 
 /* ---------------- list ---------------- */

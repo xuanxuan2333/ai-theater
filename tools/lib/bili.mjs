@@ -135,7 +135,7 @@ export async function view(bvid) {
   if (j?.code !== 0) return null;
   const d = j.data;
   return {
-    bvid: d.bvid, aid: d.aid, title: d.title, desc: stripTags(d.desc || ''),
+    bvid: d.bvid, aid: d.aid, cid: d.cid || (d.pages && d.pages[0] && d.pages[0].cid), title: d.title, desc: stripTags(d.desc || ''),
     duration: d.duration, pubdate: d.pubdate, cover: d.pic,
     up: d.owner?.name, mid: d.owner?.mid, tags: (d.tname ? [d.tname] : []),
     stat: {

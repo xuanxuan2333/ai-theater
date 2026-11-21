@@ -59,6 +59,8 @@ async function main() {
     data.videos.push({
       id: `bili-${v.bvid}`,
       bvid: v.bvid,
+      aid: v.aid,
+      cid: v.cid,
       title: v.title,
       up: v.up,
       duration: v.duration,

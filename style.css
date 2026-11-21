@@ -248,3 +248,19 @@ h1.title { font-size: 26px; font-weight: 700; letter-spacing: .01em; margin-top:
 .slide.listen .stage {
   position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; margin: 0;
 }
+
+.bili-link {
+  margin-left: auto; font-size: 11px; color: #7f8aa3;
+  border: 1px solid #273043; border-radius: 999px;
+  padding: 3px 10px; text-decoration: none;
+}
+
+.play-hint {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+  z-index: 9; white-space: nowrap;
+  font-size: 12px; color: #e6ebf5;
+  background: rgba(10,13,20,.88); border: 1px solid #2c3648;
+  padding: 6px 12px; border-radius: 999px;
+  transition: opacity .6s ease;
+}
+.play-hint.gone { opacity: 0; pointer-events: none; }

@@ -1,7 +1,7 @@
 /* 数据文件 · 只改这个文件 */
 window.THEATER_DATA = {
   "version": 1,
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-21",
   "note": "这是唯一的数据文件。改它就等于更新网站；页面代码不用动。bvid 填真实 BV 号即可播放。",
   "modules": [
     {
@@ -55,7 +55,9 @@ window.THEATER_DATA = {
         "rate": 12.41,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 114890442280099,
+      "cid": 31183339916
     },
     {
       "id": "bili-BV1uGA3eLEeu",
@@ -78,7 +80,9 @@ window.THEATER_DATA = {
         "rate": 19.31,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 114011534263076,
+      "cid": 28416214074
     },
     {
       "id": "bili-BV1ojfDBSEPv",
@@ -102,7 +106,9 @@ window.THEATER_DATA = {
         "rate": 21.13,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 116007418988157,
+      "cid": 35800812006
     },
     {
       "id": "bili-BV1C3dqYxE3q",
@@ -126,7 +132,9 @@ window.THEATER_DATA = {
         "rate": 9.73,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 114328522984185,
+      "cid": 29401417977
     },
     {
       "id": "bili-BV13z421U7cs",
@@ -150,7 +158,9 @@ window.THEATER_DATA = {
         "rate": 10.04,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 1353986541,
+      "cid": 1525102356
     },
     {
       "id": "bili-BV1TZ421j7Ke",
@@ -174,7 +184,9 @@ window.THEATER_DATA = {
         "rate": 10.09,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 1154246338,
+      "cid": 1530196453
     },
     {
       "id": "bili-BV1JLN2z4EZQ",
@@ -197,7 +209,9 @@ window.THEATER_DATA = {
         "rate": 13.56,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 114720791073589,
+      "cid": 30617043026
     },
     {
       "id": "bili-BV1TSg7zuEqR",
@@ -220,7 +234,9 @@ window.THEATER_DATA = {
         "rate": 12.22,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 114894200380730,
+      "cid": 31193827342
     },
     {
       "id": "bili-BV1Te4y1w7D6",
@@ -243,7 +259,9 @@ window.THEATER_DATA = {
         "rate": 13.14,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 651739430,
+      "cid": 1002004298
     },
     {
       "id": "bili-BV1dgnG62E33",
@@ -266,7 +284,9 @@ window.THEATER_DATA = {
         "rate": 7.22,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 117461315879698,
+      "cid": 42845145872
     },
     {
       "id": "bili-BV1MY4y1R7EN",
@@ -289,7 +309,9 @@ window.THEATER_DATA = {
         "rate": 18.58,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 653520954,
+      "cid": 1054910356
     },
     {
       "id": "bili-BV11LPWzNEkm",
@@ -313,7 +335,9 @@ window.THEATER_DATA = {
         "rate": 8.68,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 116179972788507,
+      "cid": 36487827006
     },
     {
       "id": "bili-BV14rzQB9EJj",
@@ -336,7 +360,9 @@ window.THEATER_DATA = {
         "rate": 14.7,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 115954889596221,
+      "cid": 35602042286
     },
     {
       "id": "bili-BV1BvR1BtEFD",
@@ -359,7 +385,9 @@ window.THEATER_DATA = {
         "rate": 14.19,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 116521405780262,
+      "cid": 38107285592
     },
     {
       "id": "bili-BV15stoz6E8X",
@@ -382,7 +410,9 @@ window.THEATER_DATA = {
         "rate": 10.84,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 115015113772974,
+      "cid": 31644714580
     },
     {
       "id": "bili-BV1sZMq6qEko",
@@ -405,7 +435,9 @@ window.THEATER_DATA = {
         "rate": 15.97,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 117038647352026,
+      "cid": 40601454178
     },
     {
       "id": "bili-BV1XzyWY6EJC",
@@ -428,7 +460,9 @@ window.THEATER_DATA = {
         "rate": 5.87,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 113350713476071,
+      "cid": 26411205901
     },
     {
       "id": "bili-BV18G4y1P7YF",
@@ -451,7 +485,9 @@ window.THEATER_DATA = {
         "rate": 7.27,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 821895631,
+      "cid": 1009411951
     },
     {
       "id": "bili-BV1YRG46eE1n",
@@ -475,7 +511,9 @@ window.THEATER_DATA = {
         "rate": 13.42,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 116617757459999,
+      "cid": 38528028303
     },
     {
       "id": "bili-BV1aeLqzUE6L",
@@ -499,7 +537,9 @@ window.THEATER_DATA = {
         "rate": 14.79,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 114410228025650,
+      "cid": 29644426308
     },
     {
       "id": "bili-BV1S5miBvEsu",
@@ -521,7 +561,9 @@ window.THEATER_DATA = {
         "rate": 8.82,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 115716317518738,
+      "cid": 34728709677
     },
     {
       "id": "bili-BV1RV4y1R7WM",
@@ -544,7 +586,9 @@ window.THEATER_DATA = {
         "rate": 10.26,
         "pick": "manual",
         "at": "2026-11-20"
-      }
+      },
+      "aid": 868055537,
+      "cid": 1111863071
     }
   ]
 };
