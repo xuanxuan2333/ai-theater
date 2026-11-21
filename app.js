@@ -342,7 +342,7 @@ function mountPlayer(stage, v) {
   stage.innerHTML =
     `<iframe src="${src}" allow="autoplay; fullscreen; picture-in-picture"` +
     ` scrolling="no" frameborder="0" allowfullscreen></iframe>` +
-    `<div class="play-hint">点播放器里的 ▶ 开始播放（B 站限制自动播放）</div>`;
+    `<div class="play-hint">若没自动播放，点一下播放器里的 ▶</div>`;
 
   // 提示 5 秒后淡出，不挡操作
   setTimeout(() => {
