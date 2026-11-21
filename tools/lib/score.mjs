@@ -7,6 +7,8 @@ const CLICKBAIT = [/震惊|惊呆|必看|速看|保姆级|一篇搞定|全网最
   /看完.{0,8}(上岗|年薪|月入|变现)/];
 
 const SALES = /加群|进群|交流群|领取|资料包|课程咨询|私信|vx|微信|扫码|付费|报名/;
+// 课程/搬运类（不一定坏，但要更严格地看）
+const COURSEY = /全套|从入门到精通|从零到一|速成|包会|完整版|合集|转载|搬运|字幕组|付费课程/;
 const OFFTOPIC = /漫剧|短剧|小说|推文|带货|副业|变现|引流|写真|壁纸|游戏实况|开箱/;
 const NEG_COMMENT = /念稿|AI配音|ai配音|听不懂|废话|广告|割韭菜|标题党|搬运|水视频|别浪费/g;
 const POS_COMMENT = /讲得(好|清楚|明白|透)|终于(懂|明白|理解)|清晰|透彻|受益匪浅|讲人话|深入浅出|跪了/g;
@@ -46,6 +48,7 @@ export function score(v, comments = []) {
     negs.push('标题党');
   }
   if (SALES.test(v.desc || '')) { penalty += 20; negs.push('简介导流'); }
+  if (COURSEY.test(v.title)) { penalty += 18; negs.push('课程/合集类'); }
 
   const texts = comments.map((c) => c.text).join(' ');
   const negHit = (texts.match(NEG_COMMENT) || []).length;

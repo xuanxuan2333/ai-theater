@@ -1,16 +1,54 @@
 {
-  "_说明": "种子决定抓到什么。B 站相关推荐会围绕它们扩散，只放你真正认可的视频。",
+  "_说明": "种子 = 现在已经确认优质的 22 条，围绕它们扩散。",
   "seeds": [
-    "BV1xH5Dz3Eox",
-    "BV1h3HTzyExt",
-    "BV1ys411472E",
-    "BV1ajZ7BmEDn",
-    "BV1a34y137zi"
+    "BV1NCgVzoEG9",
+    "BV1uGA3eLEeu",
+    "BV1ojfDBSEPv",
+    "BV1C3dqYxE3q",
+    "BV13z421U7cs",
+    "BV1TZ421j7Ke",
+    "BV1JLN2z4EZQ",
+    "BV1TSg7zuEqR",
+    "BV1Te4y1w7D6",
+    "BV1dgnG62E33",
+    "BV1MY4y1R7EN",
+    "BV11LPWzNEkm",
+    "BV14rzQB9EJj",
+    "BV1BvR1BtEFD",
+    "BV15stoz6E8X",
+    "BV1sZMq6qEko",
+    "BV1XzyWY6EJC",
+    "BV18G4y1P7YF",
+    "BV1YRG46eE1n",
+    "BV1aeLqzUE6L",
+    "BV1S5miBvEsu",
+    "BV1RV4y1R7WM"
   ],
   "keywords": {
-    "history": ["AI 发展史", "OpenAI 发展史", "大模型 发展 历程", "人工智能 历史"],
-    "concepts": ["大模型 原理", "Transformer 讲解", "RAG 原理", "Agent 原理", "注意力机制 讲解"],
-    "interview": ["大模型面试题", "AI 面试 怎么答", "算法工程师 大模型 面试", "Agent 面试", "RAG 面试题"],
-    "build": ["Cursor 做网站", "用AI做一个游戏", "vibe coding 实战", "Claude Code 实战", "10分钟 做出"]
+    "history": [
+      "OpenAI 历史",
+      "AI 公司 崛起",
+      "人工智能 发展 史",
+      "ChatGPT 背后"
+    ],
+    "concepts": [
+      "Transformer 原理 讲解",
+      "RAG 原理 详解",
+      "Agent 原理 讲解",
+      "注意力机制 直观",
+      "大模型 训练 过程"
+    ],
+    "interview": [
+      "大模型 面试 真题",
+      "AI 岗位 面试",
+      "面试官 大模型",
+      "算法 面试 项目"
+    ],
+    "build": [
+      "Cursor 实战 教程",
+      "用 AI 做 产品",
+      "Claude Code 实战",
+      "零基础 AI 编程"
+    ]
   }
 }

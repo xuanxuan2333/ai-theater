@@ -589,6 +589,387 @@ window.THEATER_DATA = {
       },
       "aid": 868055537,
       "cid": 1111863071
+    },
+    {
+      "id": "bili-BV1Zz4y1x7yb",
+      "bvid": "BV1Zz4y1x7yb",
+      "aid": 574007225,
+      "cid": 1214833052,
+      "title": "深度拆解AI进化史，人类正在迈入全新时代！【围炉夜话】",
+      "up": "智能路障",
+      "duration": 3988,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "发展史"
+      ],
+      "quality": 81,
+      "views": 469043,
+      "cover": "https://i0.hdslb.com/bfs/archive/9fda9bc7a4383387ca5ec269d26fea670d86223d.jpg",
+      "curate": {
+        "rate": 16.76,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1Nyx764EMy",
+      "bvid": "BV1Nyx764EMy",
+      "aid": 117518576392212,
+      "cid": 43127736659,
+      "title": "Claude背后的Anthropic：掌握核心科技的邪教",
+      "up": "草莓味萝卜批发",
+      "duration": 2047,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 80,
+      "views": 985500,
+      "cover": "https://i0.hdslb.com/bfs/archive/c2169de63c649bbfe9b592e224b2061cb393d2b7.jpg",
+      "curate": {
+        "rate": 13.08,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1darmBcE4A",
+      "bvid": "BV1darmBcE4A",
+      "aid": 115909138055436,
+      "cid": 35438791242,
+      "title": "翁家翌：OpenAI，GPT，强化学习，Infra，后训练，天授，tuixue，开源，CMU，清华｜WhynotTV Podcast #4",
+      "up": "WhynotTV",
+      "duration": 7365,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "面试",
+        "发展史"
+      ],
+      "quality": 69,
+      "views": 1275032,
+      "cover": "https://i2.hdslb.com/bfs/archive/54724e4aece32efd308fa76c613597182e54e32e.jpg",
+      "curate": {
+        "rate": 12.56,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1xoJwzDESD",
+      "bvid": "BV1xoJwzDESD",
+      "aid": 114522685704822,
+      "cid": 30169696115,
+      "title": "《Attention is all you need》论文解读及Transformer架构详细介绍",
+      "up": "堂吉诃德拉曼查的英豪",
+      "duration": 3152,
+      "module": "concepts",
+      "modes": [
+        "focus"
+      ],
+      "tags": [
+        "Transformer",
+        "注意力"
+      ],
+      "quality": 90,
+      "views": 657389,
+      "cover": "https://i2.hdslb.com/bfs/archive/dfdc3218f8405b768c1198f04102514d0c558fc7.jpg",
+      "curate": {
+        "rate": 21.18,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1dyW9zsEk1",
+      "bvid": "BV1dyW9zsEk1",
+      "aid": 115411475498341,
+      "cid": 33262732186,
+      "title": "20分钟读懂AI神级论文《Attention Is All You Need》",
+      "up": "李自然说",
+      "duration": 1652,
+      "module": "concepts",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "Transformer",
+        "注意力"
+      ],
+      "quality": 84,
+      "views": 524935,
+      "cover": "https://i2.hdslb.com/bfs/archive/56ba333c5ef8f1dfe32cdca9e74bb548b4cf0fa7.jpg",
+      "curate": {
+        "rate": 16.06,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1aTxMehEjK",
+      "bvid": "BV1aTxMehEjK",
+      "aid": 113215035936825,
+      "cid": 26046694390,
+      "title": "【官方双语】直观解释大语言模型如何储存事实 | 【深度学习第7章】",
+      "up": "3Blue1Brown",
+      "duration": 1363,
+      "module": "concepts",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "Transformer",
+        "神经网络"
+      ],
+      "quality": 83,
+      "views": 447080,
+      "cover": "https://i1.hdslb.com/bfs/archive/d00d437b17dffc389a698db4df3c9267fd61ed62.jpg",
+      "curate": {
+        "rate": 11.54,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1Zk9FBwELs",
+      "bvid": "BV1Zk9FBwELs",
+      "aid": 116334943798885,
+      "cid": 37177853344,
+      "title": "最近爆火的 Harness Engineering 到底是啥？一期讲透！",
+      "up": "code秘密花园",
+      "duration": 1111,
+      "module": "concepts",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "提示词"
+      ],
+      "quality": 90,
+      "views": 491624,
+      "cover": "https://i0.hdslb.com/bfs/archive/f0d5b9609892b791eccb60b2c515815e2eb63881.jpg",
+      "curate": {
+        "rate": 14.89,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1cGigBQE6n",
+      "bvid": "BV1cGigBQE6n",
+      "aid": 115814279681221,
+      "cid": 35102002470,
+      "title": "Agent Skill 从使用到原理，一次讲清",
+      "up": "马克的技术工作坊",
+      "duration": 1062,
+      "module": "concepts",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "Agent",
+        "MCP"
+      ],
+      "quality": 88,
+      "views": 988864,
+      "cover": "https://i1.hdslb.com/bfs/archive/a70af317a725a3cbd1ad7d94e0ecb2d3eb679fd1.jpg",
+      "curate": {
+        "rate": 10.15,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1Di4y1c7Zm",
+      "bvid": "BV1Di4y1c7Zm",
+      "aid": 543251361,
+      "cid": 270989022,
+      "title": "Transformer从零详细解读(可能是你见过最通俗易懂的讲解)",
+      "up": "DASOU讲AI",
+      "duration": 2573,
+      "module": "concepts",
+      "modes": [
+        "focus"
+      ],
+      "tags": [
+        "Transformer"
+      ],
+      "quality": 71,
+      "views": 1000488,
+      "cover": "https://i1.hdslb.com/bfs/archive/4c1359515db520c1f62027976e2346bd71503950.jpg",
+      "curate": {
+        "rate": 7.22,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1G3FNznEiS",
+      "bvid": "BV1G3FNznEiS",
+      "aid": 116000439664997,
+      "cid": 35774989940,
+      "title": "手把手彻底学会 Agent Skills！【小白教程】",
+      "up": "秋芝2046",
+      "duration": 1159,
+      "module": "build",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "Agent",
+        "实战"
+      ],
+      "quality": 84,
+      "views": 800354,
+      "cover": "https://i1.hdslb.com/bfs/archive/197a1c1200837737f55a827836c7c3ac00ab4415.jpg",
+      "curate": {
+        "rate": 14.31,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1KSKwzJEEV",
+      "bvid": "BV1KSKwzJEEV",
+      "aid": 114714935886954,
+      "cid": 30599154822,
+      "title": "从0开始“做”一个Agent！【n8n草履虫教程】",
+      "up": "秋芝2046",
+      "duration": 2021,
+      "module": "build",
+      "modes": [
+        "focus"
+      ],
+      "tags": [
+        "Agent",
+        "实战"
+      ],
+      "quality": 81,
+      "views": 749197,
+      "cover": "https://i2.hdslb.com/bfs/archive/251026ec22514609faa7f0c9f8193da021b9c5b1.jpg",
+      "curate": {
+        "rate": 10.78,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1AnQNYxEsy",
+      "bvid": "BV1AnQNYxEsy",
+      "aid": 114155298228756,
+      "cid": 28847180181,
+      "title": "MCP是啥？技术原理是什么？一个视频搞懂MCP的一切。Windows系统配置MCP，Cursor Cline使用MCP",
+      "up": "技术爬爬虾",
+      "duration": 910,
+      "module": "build",
+      "modes": [
+        "focus"
+      ],
+      "tags": [
+        "实战",
+        "发展史"
+      ],
+      "quality": 82,
+      "views": 428643,
+      "cover": "https://i1.hdslb.com/bfs/archive/4a14d7cb4b041714fd70c68d89f15776a734909a.jpg",
+      "curate": {
+        "rate": 10.46,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1BVrXBUEbR",
+      "bvid": "BV1BVrXBUEbR",
+      "aid": 115910614454162,
+      "cid": 35447047258,
+      "title": "OpenCode详细攻略，开源版Claude Code，免费模型与神级插件",
+      "up": "技术爬爬虾",
+      "duration": 1093,
+      "module": "build",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "Agent",
+        "MCP"
+      ],
+      "quality": 79,
+      "views": 581966,
+      "cover": "https://i1.hdslb.com/bfs/archive/66e7c5003c65cd2d3d5e50c704a7c7a18c0b2513.jpg",
+      "curate": {
+        "rate": 9.41,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1BXQABNE4y",
+      "bvid": "BV1BXQABNE4y",
+      "aid": 116381014037952,
+      "cid": 37396874145,
+      "title": "我蒸馏了17个大佬给我打工（开源免费）",
+      "up": "花叔v",
+      "duration": 1107,
+      "module": "build",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 84,
+      "views": 531255,
+      "cover": "https://i0.hdslb.com/bfs/archive/582d37ba2cfbc4da7ea0b9c0eef3563c3fd63853.jpg",
+      "curate": {
+        "rate": 13.35,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV1VAUKBxEFT",
+      "bvid": "BV1VAUKBxEFT",
+      "aid": 115598356975912,
+      "cid": 34206125564,
+      "title": "Ai-Infra面试实录—大模型推理框架开发实习岗位",
+      "up": "我是傅傅猪",
+      "duration": 3197,
+      "module": "interview",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "面试",
+        "实战"
+      ],
+      "quality": 73,
+      "views": 8903,
+      "cover": "https://i1.hdslb.com/bfs/archive/60e44678e5f2120db142d9ffdf3b1df75c7b5681.jpg",
+      "curate": {
+        "rate": 7.02,
+        "pick": "manual",
+        "at": "2026-11-21"
+      }
     }
   ]
 };
