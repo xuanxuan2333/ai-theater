@@ -641,32 +641,6 @@ window.THEATER_DATA = {
       }
     },
     {
-      "id": "bili-BV1darmBcE4A",
-      "bvid": "BV1darmBcE4A",
-      "aid": 115909138055436,
-      "cid": 35438791242,
-      "title": "翁家翌：OpenAI，GPT，强化学习，Infra，后训练，天授，tuixue，开源，CMU，清华｜WhynotTV Podcast #4",
-      "up": "WhynotTV",
-      "duration": 7365,
-      "module": "history",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "面试",
-        "发展史"
-      ],
-      "quality": 69,
-      "views": 1275032,
-      "cover": "https://i2.hdslb.com/bfs/archive/54724e4aece32efd308fa76c613597182e54e32e.jpg",
-      "curate": {
-        "rate": 12.56,
-        "pick": "manual",
-        "at": "2026-11-21"
-      }
-    },
-    {
       "id": "bili-BV1xoJwzDESD",
       "bvid": "BV1xoJwzDESD",
       "aid": 114522685704822,
@@ -992,31 +966,6 @@ window.THEATER_DATA = {
       "cover": "https://i2.hdslb.com/bfs/archive/d4159ec2886c3d59a2d37f42110c11f18f00beba.jpg",
       "curate": {
         "rate": 5.95,
-        "pick": "manual",
-        "at": "2026-11-23"
-      }
-    },
-    {
-      "id": "bili-BV1uQghzLEmB",
-      "bvid": "BV1uQghzLEmB",
-      "aid": 114885979607638,
-      "cid": 31171608861,
-      "title": "【面对面】专访英伟达创始人黄仁勋",
-      "up": "央视新闻",
-      "duration": 2255,
-      "module": "history",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "AI"
-      ],
-      "quality": 60,
-      "views": 1676384,
-      "cover": "https://i0.hdslb.com/bfs/archive/e82c197487c21ef255b4f63a46c6bf2150badcf1.jpg",
-      "curate": {
-        "rate": 6.08,
         "pick": "manual",
         "at": "2026-11-23"
       }
@@ -1547,31 +1496,6 @@ window.THEATER_DATA = {
       }
     },
     {
-      "id": "bili-BV1hFe1zSEXp",
-      "bvid": "BV1hFe1zSEXp",
-      "aid": 115099134134471,
-      "cid": 31969772655,
-      "title": "对话Kimi创始人杨植麟：K2、Agentic LLM、缸中之脑、艰难的泛化、用L4解决L3、长文本影响智商、“站在无限的开端”",
-      "up": "张小珺商业访谈录",
-      "duration": 5979,
-      "module": "history",
-      "modes": [
-        "focus",
-        "listen"
-      ],
-      "tags": [
-        "Agent"
-      ],
-      "quality": 61,
-      "views": 447818,
-      "cover": "https://i1.hdslb.com/bfs/archive/dbf4b7086abec5050b19f8ea33bd149721e69c81.jpg",
-      "curate": {
-        "rate": 4.83,
-        "pick": "manual",
-        "at": "2026-11-23"
-      }
-    },
-    {
       "id": "bili-BV1GqEvzSEaA",
       "bvid": "BV1GqEvzSEaA",
       "aid": 114505942048738,
@@ -1692,6 +1616,231 @@ window.THEATER_DATA = {
       "cover": "https://i1.hdslb.com/bfs/archive/46b4c41a75edaf0d35cb21d25203a4b6cc437f2a.jpg",
       "curate": {
         "rate": 3.78,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1vk4y1K7Lc",
+      "bvid": "BV1vk4y1K7Lc",
+      "aid": 743143124,
+      "cid": 1190488746,
+      "title": "英伟达最强推销员黄仁勋，如何卖出一个万亿芯片帝国？",
+      "up": "老石谈芯",
+      "duration": 1153,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "发展史"
+      ],
+      "quality": 51,
+      "views": 482789,
+      "cover": "https://i2.hdslb.com/bfs/archive/e2d36f83cd7326ea6b476617ef28e08a6d2c4bdb.jpg",
+      "curate": {
+        "rate": 4.28,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1qB4y1E7mU",
+      "bvid": "BV1qB4y1E7mU",
+      "aid": 603205104,
+      "cid": 838210139,
+      "title": "市值腰斩！英伟达到底怎么了？",
+      "up": "老石谈芯",
+      "duration": 670,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 48,
+      "views": 349143,
+      "cover": "https://i2.hdslb.com/bfs/archive/7f06b1df99845c2b4bae5ace477d7595e23b58d9.jpg",
+      "curate": {
+        "rate": 3.92,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1if4y1r7dX",
+      "bvid": "BV1if4y1r7dX",
+      "aid": 289085008,
+      "cid": 294924418,
+      "title": "芯片工程师眼中的华为昇腾：地表最强AI芯片?",
+      "up": "老石谈芯",
+      "duration": 720,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 54,
+      "views": 286002,
+      "cover": "https://i0.hdslb.com/bfs/archive/d5daca135adf4e308a0421cb5486c30d249b2538.jpg",
+      "curate": {
+        "rate": 5.17,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1UW4b6YEnd",
+      "bvid": "BV1UW4b6YEnd",
+      "aid": 117563505772433,
+      "cid": 43352458758,
+      "title": "你相信光吗：把几万个GPU用光连起来，到底有多难？| 一期视频看懂光互连",
+      "up": "老石谈芯",
+      "duration": 3182,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 54,
+      "views": 259282,
+      "cover": "https://i1.hdslb.com/bfs/archive/5bfac455df13467f99fb96f46b31b1745ab3ae94.jpg",
+      "curate": {
+        "rate": 4.65,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1Lb4q6AENW",
+      "bvid": "BV1Lb4q6AENW",
+      "aid": 117568941660118,
+      "cid": 43379920828,
+      "title": "一个十九世纪的女人，为何至今英伟达都要蹭她的流量",
+      "up": "图灵的猫",
+      "duration": 227,
+      "module": "history",
+      "modes": [
+        "relax",
+        "listen"
+      ],
+      "tags": [
+        "实战"
+      ],
+      "quality": 62,
+      "views": 381908,
+      "cover": "https://i1.hdslb.com/bfs/archive/f49b10594c9fc84f8b290ae1b6ce67bd164fea00.jpg",
+      "curate": {
+        "rate": 7.2,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1BaypzRED9",
+      "bvid": "BV1BaypzRED9",
+      "aid": 117648750810849,
+      "cid": 43788995224,
+      "title": "中美AI产业变天！",
+      "up": "所长林超",
+      "duration": 681,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 64,
+      "views": 145446,
+      "cover": "https://i2.hdslb.com/bfs/archive/197ab2fa294e4af4d9ad868347a0c912f8a84004.jpg",
+      "curate": {
+        "rate": 7.8,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV15Zst6eEPD",
+      "bvid": "BV15Zst6eEPD",
+      "aid": 117642341913026,
+      "cid": 43737090719,
+      "title": "英伟达为什么绕不开美国党争？各方究竟在争什么？",
+      "up": "空山猎人",
+      "duration": 2347,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 69,
+      "views": 595272,
+      "cover": "https://i0.hdslb.com/bfs/archive/4630089e42a97d76fdb4d0bd8d152b0e4a7f223e.jpg",
+      "curate": {
+        "rate": 8.81,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1V4Te6MEAu",
+      "bvid": "BV1V4Te6MEAu",
+      "aid": 116842538474896,
+      "cid": 39548554286,
+      "title": "AI巨头们之间的资本混战，到底是个什么情况？",
+      "up": "小Lin说",
+      "duration": 1168,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 59,
+      "views": 2276185,
+      "cover": "https://i0.hdslb.com/bfs/archive/80357904ce7760a4f3efc0f3918d06370b3cee4b.jpg",
+      "curate": {
+        "rate": 6.26,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1dsckzFEcz",
+      "bvid": "BV1dsckzFEcz",
+      "aid": 116215691415939,
+      "cid": 36994614235,
+      "title": "中国什么时候才能拥有自己的高端光刻机？深扒ASML百亿豪赌背后的黑幕、契约与谎言",
+      "up": "空山猎人",
+      "duration": 2607,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 71,
+      "views": 244098,
+      "cover": "https://i0.hdslb.com/bfs/archive/24a8c689ef667a5fdbd6aec43022938e4fff2ea6.jpg",
+      "curate": {
+        "rate": 8.36,
         "pick": "manual",
         "at": "2026-11-23"
       }

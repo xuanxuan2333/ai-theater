@@ -319,3 +319,9 @@ h1.title { font-size: 26px; font-weight: 700; letter-spacing: .01em; margin-top:
 }
 .cell-m { font-size: 9px; color: #4d566c; margin-top: 3px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .group { margin-bottom: 18px; }
+
+/* ---------- 可叠加筛选 ---------- */
+.filters { display: flex; gap: 3px; margin-left: auto; background: #141a25; border: 1px solid #232b3a; border-radius: 9px; padding: 2px; }
+.filters button { font-size: 10.5px; padding: 4px 8px; border-radius: 7px; color: #7f8aa3; white-space: nowrap; }
+.filters button.on { background: #2a3550; color: #e6ebf5; font-weight: 600; }
+.feed-top .nm { max-width: 84px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

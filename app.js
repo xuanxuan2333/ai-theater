@@ -6,11 +6,14 @@ let MODS = [];
 let VIDEOS = [];
 let DATA = null;
 
-const MODES = {
-  relax:  { name: '刷一刷', desc: '5 分钟以内，碎片时间' },
-  focus:  { name: '专注',   desc: '长视频，坐下来看' },
-  listen: { name: '只听',   desc: '不看画面也能懂' },
+const FILTERS = {
+  short:  { label: '≤10分', test: (v) => v.duration <= 600 },
+  long:   { label: '>10分', test: (v) => v.duration > 600 },
+  listen: { label: '能听',  test: (v) => (v.modes || []).includes('listen') },
 };
+const parseFilters = (str) =>
+  !str || str === 'all' ? [] : str.split(',').filter((k) => FILTERS[k]);
+const filterStr = (arr) => (arr.length ? arr.join(',') : 'all');
 
 const KEY = 'ai-theater-v1';
 const DAY = 86400000;
@@ -40,24 +43,18 @@ const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 const fmtL = (s) => (s >= 3600 ? `${Math.floor(s / 3600)} 小时 ${Math.round((s % 3600) / 60)} 分` : `${Math.round(s / 60)} 分钟`);
 
 /* ---------------- queue ---------------- */
-/* 队列 = 这个模块这个场景下的全部视频（去掉不感兴趣的）。
-   只排一次，翻回去还在；已看的不踢出去，只是下次从第一条没看过的开始。 */
+/* 队列 = 这个模块里同时满足所有筛选条件的视频。
+   条件是「且」：比如 short + listen = 又短又能听。
+   只排一次，翻回去还在；已看的不踢出去，从第一条没看过的开始。 */
 const QUEUES = new Map();
 
-function queueFor(module, mode) {
-  const key = `${module}:${mode}`;
+function queueFor(module, filters) {
+  const key = `${module}|${filters.slice().sort().join(',')}`;
   if (QUEUES.has(key)) return QUEUES.get(key);
 
-  let pool = VIDEOS.filter((v) => v.module === module && v.modes.includes(mode) && !S.disliked[v.id]);
-
-  // 刷一刷兜底：短视频太少时补这个模块最短的几条
-  if (mode === 'relax' && pool.length < 3) {
-    const extra = VIDEOS
-      .filter((v) => v.module === module && !v.modes.includes('relax') && !S.disliked[v.id])
-      .sort((a, b) => a.duration - b.duration)
-      .slice(0, 3 - pool.length);
-    pool = pool.concat(extra);
-  }
+  const pool = VIDEOS.filter(
+    (v) => v.module === module && !S.disliked[v.id] && filters.every((k) => FILTERS[k].test(v))
+  );
 
   const ordered = pool
     .map((v) => ({ v, k: v.quality + Math.random() * 9 }))
@@ -71,8 +68,13 @@ function queueFor(module, mode) {
 function counts(module) {
   const all = VIDEOS.filter((v) => v.module === module);
   const alive = all.filter((v) => !isSeen(v.id) && !S.disliked[v.id]);
-  const by = (m) => alive.filter((v) => v.modes.includes(m)).length;
-  return { total: all.length, left: alive.length, relax: by('relax'), focus: by('focus'), listen: by('listen') };
+  return {
+    total: all.length,
+    left: alive.length,
+    short: alive.filter((v) => v.duration <= 600).length,
+    long: alive.filter((v) => v.duration > 600).length,
+    listen: alive.filter((v) => (v.modes || []).includes('listen')).length,
+  };
 }
 
 /* ---------------- view helpers ---------------- */
@@ -188,7 +190,7 @@ function renderHome() {
     const c = counts(m.id);
     const pct = c.total ? Math.round(((c.total - c.left) / c.total) * 100) : 0;
     return `
-      <button class="mod ${m.cls}" data-go="#/m/${m.id}">
+      <button class="mod ${m.cls}" data-go="#/m/${m.id}/all">
         <div class="row1">
           <span style="font-size:19px">${m.icon}</span>
           <span class="name">${m.name}</span>
@@ -197,7 +199,7 @@ function renderHome() {
         <div class="desc">${m.desc}</div>
         <div class="bar"><i style="width:${pct}%"></i></div>
         <div class="meta">
-          <span>专注 ${c.focus}</span><span>刷一刷 ${c.relax}</span><span>只听 ${c.listen}</span>
+          <span>短 ${c.short}</span><span>长 ${c.long}</span><span>能听 ${c.listen}</span>
         </div>
       </button>`;
   }).join('');
@@ -223,45 +225,55 @@ function renderHome() {
 let feedObserver = null;
 let startId = null;
 
-function renderFeed(module, mode) {
+function renderFeed(module, filterArg) {
   const m = mod(module);
   if (!m) return (location.hash = '#/');
-  mode = MODES[mode] ? mode : 'relax';
+
+  let active = parseFilters(filterArg);
   S.lastModule = module;
-  S.lastMode = mode;
-  S.views[mode] = (S.views[mode] || 0) + 1;
+  S.lastMode = filterStr(active);
+  // 统计：短 / 长 / 能听各记一次
+  if (active.includes('short')) S.views.relax = (S.views.relax || 0) + 1;
+  if (active.includes('long')) S.views.focus = (S.views.focus || 0) + 1;
+  if (active.includes('listen')) S.views.listen = (S.views.listen || 0) + 1;
+  if (!active.length) S.views.relax = (S.views.relax || 0) + 1;
   save();
 
-  const list = queueFor(module, mode);
-  document.title = `${m.name} · ${MODES[mode].name}`;
+  const list = queueFor(module, active);
+  const listenOnly = active.includes('listen') && !active.includes('short') && !active.includes('long');
+  const label = active.length ? active.map((k) => FILTERS[k].label).join(' + ') : '全部';
+  document.title = `${m.name} · ${label}`;
 
   const top = `
     <div class="feed-top">
       <button class="back" data-go="#/">‹</button>
       <span class="nm">${m.name}</span>
-      <div class="modes">
-        ${Object.entries(MODES).map(([k, v]) => `<button class="${k === mode ? 'on' : ''}" data-mode="${k}" data-module="${module}">${v.name}</button>`).join('')}
+      <div class="filters">
+        <button class="${active.length === 0 ? 'on' : ''}" data-fset="" data-module="${module}">全部</button>
+        ${Object.entries(FILTERS).map(([k, f]) =>
+          `<button class="${active.includes(k) ? 'on' : ''}" data-ftoggle="${k}" data-module="${module}">${f.label}</button>`
+        ).join('')}
       </div>
-      <button class="reshuffle" data-reshuffle="${module}:${mode}" title="重新洗一遍顺序">↻</button>
+      <button class="reshuffle" data-reshuffle="${module}|${active.slice().sort().join(',')}" title="重新洗一遍">↻</button>
       <button class="tolist" data-go="#/m/${module}/list" title="列表">☰</button>
     </div>`;
 
   if (!list.length) {
     app.innerHTML = top + `<div class="page" style="display:grid;place-items:center;text-align:center">
-      <div class="empty">这个模式刷完了 🎉<br>换一个场景，或者回首页换个模块</div></div>`;
+      <div class="empty">这个组合下没有视频<br>少勾一个条件试试</div></div>`;
     return;
   }
 
   const slides = list.map((v, i) => `
-    <section class="slide ${mode === 'listen' ? 'listen' : ''}" data-idx="${i}" data-id="${v.id}">
-      ${mode === 'listen' ? `
+    <section class="slide ${listenOnly ? 'listen' : ''}" data-idx="${i}" data-id="${v.id}">
+      ${listenOnly ? `
       <div class="listen-hero">
         <div class="cover-big" style="background:${gradOf(v)}"></div>
         <div class="wave">${[8, 15, 10, 21, 7, 17, 12, 23, 9, 14].map((h) => `<i style="height:${h}px"></i>`).join('')}</div>
         <div class="lnote">屏幕常亮 · 锁屏会暂停</div>
       </div>
       <div class="stage"></div>` : ''}
-      ${mode !== 'listen' ? `<div class="stage">
+      ${!listenOnly ? `<div class="stage">
         <div class="cover" style="background:${gradOf(v)}"></div>
         <span class="demo">B 站</span>
         <button class="playbtn" data-play="${v.id}">▶</button>
@@ -291,8 +303,6 @@ function renderFeed(module, mode) {
   app.innerHTML = top + `<div class="feed" id="feed">${slides}</div>`;
 
   const feed = document.getElementById('feed');
-
-  // 从第一条没看过的开始；全看过就从开头
   let startIdx = list.findIndex((v) => !isSeen(v.id));
   if (startIdx < 0) startIdx = 0;
   if (startIdx > 0) feed.scrollTop = startIdx * feed.clientHeight;
@@ -354,7 +364,8 @@ function mountPlayer(stage, v) {
 }
 
 /* ---------------- list ---------------- */
-let listFilter = 'all';
+let listFilters = [];
+let listUnseen = false;
 let listGroup = false;   // false = 密集网格，true = 按 UP 分组
 
 function renderList(module) {
@@ -363,12 +374,9 @@ function renderList(module) {
   document.title = `${m.name} · 列表`;
 
   const all = VIDEOS.filter((v) => v.module === module);
-  let items = all.filter((v) => {
-    if (listFilter === 'short') return v.duration <= 600;
-    if (listFilter === 'long') return v.duration > 600;
-    if (listFilter === 'unseen') return !isSeen(v.id);
-    return true;
-  });
+  let items = all.filter(
+    (v) => listFilters.every((k) => FILTERS[k].test(v)) && (!listUnseen || !isSeen(v.id))
+  );
 
   let body;
   if (listGroup) {
@@ -391,14 +399,17 @@ function renderList(module) {
   app.innerHTML = `
     <div class="page top">
       <div class="listbar">
-        <button class="back" data-go="#/m/${module}">‹</button>
+        <button class="back" data-go="#/m/${module}/all">‹</button>
         <span class="nm">${m.name}</span>
-        <span class="cnt">${all.length} 条</span>
+        <span class="cnt">${items.length} / ${all.length} 条</span>
         <button class="gbtn ${listGroup ? 'on' : ''}" data-group="1">按 UP</button>
       </div>
       <div class="chips">
-        ${[['all', '全部'], ['short', '≤10分'], ['long', '>10分'], ['unseen', '未看']]
-          .map(([k, l]) => `<button class="chip ${listFilter === k ? 'on' : ''}" data-filter="${k}">${l}</button>`).join('')}
+        ${Object.entries(FILTERS).map(([k, f]) =>
+          `<button class="chip ${listFilters.includes(k) ? 'on' : ''}" data-lfilter="${k}">${f.label}</button>`
+        ).join('')}
+        <button class="chip ${listUnseen ? 'on' : ''}" data-lunseen="1">未看</button>
+        ${listFilters.length || listUnseen ? '<button class="chip" data-lclear="1">清除</button>' : ''}
       </div>
       ${body || '<div class="empty">没有符合条件的视频</div>'}
       <div style="height:30px"></div>
@@ -440,9 +451,9 @@ function renderMe() {
 
       <div class="sect">你都在什么场景下看</div>
       <div class="usage">
-        <div><div class="v">${pct('focus')}%</div><div class="k">🎯 专注</div></div>
-        <div><div class="v">${pct('relax')}%</div><div class="k">☕ 刷一刷</div></div>
-        <div><div class="v">${pct('listen')}%</div><div class="k">🎧 只听</div></div>
+        <div><div class="v">${pct('focus')}%</div><div class="k">🎯 长视频</div></div>
+        <div><div class="v">${pct('relax')}%</div><div class="k">☕ 短视频</div></div>
+        <div><div class="v">${pct('listen')}%</div><div class="k">🎧 能听</div></div>
       </div>
 
       <div class="sect">你的赞踩在调什么</div>
@@ -502,10 +513,25 @@ document.addEventListener('click', (e) => {
   const re = e.target.closest('[data-reshuffle]');
   if (re) {
     QUEUES.delete(re.dataset.reshuffle);
-    const [mm, mo] = re.dataset.reshuffle.split(':');
+    const [mm, mo] = re.dataset.reshuffle.split('|');
     startId = null;
-    renderFeed(mm, mo);
+    renderFeed(mm, mo || 'all');
     toast('顺序已重新洗过');
+    return;
+  }
+
+  if (e.target.closest('[data-fset]')) {
+    const btn = e.target.closest('[data-fset]');
+    location.hash = `#/m/${btn.dataset.module}/all`;
+    return;
+  }
+
+  const ft = e.target.closest('[data-ftoggle]');
+  if (ft) {
+    const cur = parseFilters(location.hash.split('/')[3] || 'all');
+    const k = ft.dataset.ftoggle;
+    const next = cur.includes(k) ? cur.filter((x) => x !== k) : cur.concat(k);
+    location.hash = `#/m/${ft.dataset.module}/${filterStr(next)}`;
     return;
   }
 
@@ -541,12 +567,19 @@ document.addEventListener('click', (e) => {
   if (watch) {
     const [m, vid] = watch.dataset.watch.split('/');
     startId = vid;
-    location.hash = `#/m/${m}/${S.lastMode || 'relax'}`;
+    location.hash = `#/m/${m}/${filterStr(listFilters)}`;
     return;
   }
 
-  const filter = e.target.closest('[data-filter]');
-  if (filter) { listFilter = filter.dataset.filter; renderList(location.hash.split('/')[2]); return; }
+  const lf = e.target.closest('[data-lfilter]');
+  if (lf) {
+    const k = lf.dataset.lfilter;
+    listFilters = listFilters.includes(k) ? listFilters.filter((x) => x !== k) : listFilters.concat(k);
+    renderList(location.hash.split('/')[2]);
+    return;
+  }
+  if (e.target.closest('[data-lunseen]')) { listUnseen = !listUnseen; renderList(location.hash.split('/')[2]); return; }
+  if (e.target.closest('[data-lclear]')) { listFilters = []; listUnseen = false; renderList(location.hash.split('/')[2]); return; }
 
   if (e.target.id === 'export') {
     const data = JSON.stringify({ ...S, exportedAt: new Date().toISOString() }, null, 2);
