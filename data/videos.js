@@ -1545,6 +1545,156 @@ window.THEATER_DATA = {
         "pick": "manual",
         "at": "2026-11-23"
       }
+    },
+    {
+      "id": "bili-BV1hFe1zSEXp",
+      "bvid": "BV1hFe1zSEXp",
+      "aid": 115099134134471,
+      "cid": 31969772655,
+      "title": "对话Kimi创始人杨植麟：K2、Agentic LLM、缸中之脑、艰难的泛化、用L4解决L3、长文本影响智商、“站在无限的开端”",
+      "up": "张小珺商业访谈录",
+      "duration": 5979,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "Agent"
+      ],
+      "quality": 61,
+      "views": 447818,
+      "cover": "https://i1.hdslb.com/bfs/archive/dbf4b7086abec5050b19f8ea33bd149721e69c81.jpg",
+      "curate": {
+        "rate": 4.83,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1GqEvzSEaA",
+      "bvid": "BV1GqEvzSEaA",
+      "aid": 114505942048738,
+      "cid": 29956899730,
+      "title": "国产大模型新赛季：五强争锋",
+      "up": "林亦LYi",
+      "duration": 835,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 48,
+      "views": 267719,
+      "cover": "https://i0.hdslb.com/bfs/archive/ff501d12624e67080c4101dc46b4cae26140d58a.jpg",
+      "curate": {
+        "rate": 3.76,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1F7VR64EhS",
+      "bvid": "BV1F7VR64EhS",
+      "aid": 116672232951591,
+      "cid": 38758056814,
+      "title": "起了个大早，赶了个晚集：百度Ai怎就混成了这样？",
+      "up": "山河有声",
+      "duration": 1367,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 45,
+      "views": 268238,
+      "cover": "https://i2.hdslb.com/bfs/archive/189a9a9d4c5de3d6c2b1ee31cc583bcc4eab198b.jpg",
+      "curate": {
+        "rate": 3.05,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1MrK86EEkZ",
+      "bvid": "BV1MrK86EEkZ",
+      "aid": 116958234154185,
+      "cid": 40167998125,
+      "title": "月之暗面/Kimi 创始人杨植麟 2014清华特奖答辩    2014年，清华本科生特等奖学金答辩现场，唐杰站在台上推荐杨植麟：“他是我这几年见过最优秀、最有天",
+      "up": "烟链科技",
+      "duration": 640,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 48,
+      "views": 220497,
+      "cover": "https://i2.hdslb.com/bfs/archive/8d87d6e37494bcfda0758d19eb9244a1fec0b9c0.jpg",
+      "curate": {
+        "rate": 2.71,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1Ahxr6WEBZ",
+      "bvid": "BV1Ahxr6WEBZ",
+      "aid": 117533491336933,
+      "cid": 43198514498,
+      "title": "国产AI 被谁卡脖子了？一口气了解中国AI产业链。",
+      "up": "Yona呀呀",
+      "duration": 414,
+      "module": "history",
+      "modes": [
+        "relax",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 64,
+      "views": 60148,
+      "cover": "https://i1.hdslb.com/bfs/archive/50588a439f6a06eba386a060e159515c1a3d2d47.jpg",
+      "curate": {
+        "rate": 5.05,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1qZiQBwESG",
+      "bvid": "BV1qZiQBwESG",
+      "aid": 115858202497687,
+      "cid": 35258239039,
+      "title": "英伟达、GPU、中国，算力真能打赢AI战争吗？【阿Test正经比比】",
+      "up": "阿Test正经比比",
+      "duration": 1371,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "注意力"
+      ],
+      "quality": 50,
+      "views": 1148763,
+      "cover": "https://i1.hdslb.com/bfs/archive/46b4c41a75edaf0d35cb21d25203a4b6cc437f2a.jpg",
+      "curate": {
+        "rate": 3.78,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
     }
   ]
 };
