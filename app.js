@@ -40,23 +40,32 @@ const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 const fmtL = (s) => (s >= 3600 ? `${Math.floor(s / 3600)} 小时 ${Math.round((s % 3600) / 60)} 分` : `${Math.round(s / 60)} 分钟`);
 
 /* ---------------- queue ---------------- */
-function buildQueue(module, mode) {
-  const ok = (v) => !isSeen(v.id) && !S.disliked[v.id];
-  let pool = VIDEOS.filter((v) => v.module === module && v.modes.includes(mode) && ok(v));
+/* 队列 = 这个模块这个场景下的全部视频（去掉不感兴趣的）。
+   只排一次，翻回去还在；已看的不踢出去，只是下次从第一条没看过的开始。 */
+const QUEUES = new Map();
 
-  // 刷一刷兜底：短视频不足 3 条时，补这个模块里时长最短的，免得开天窗
+function queueFor(module, mode) {
+  const key = `${module}:${mode}`;
+  if (QUEUES.has(key)) return QUEUES.get(key);
+
+  let pool = VIDEOS.filter((v) => v.module === module && v.modes.includes(mode) && !S.disliked[v.id]);
+
+  // 刷一刷兜底：短视频太少时补这个模块最短的几条
   if (mode === 'relax' && pool.length < 3) {
     const extra = VIDEOS
-      .filter((v) => v.module === module && !v.modes.includes('relax') && ok(v))
+      .filter((v) => v.module === module && !v.modes.includes('relax') && !S.disliked[v.id])
       .sort((a, b) => a.duration - b.duration)
       .slice(0, 3 - pool.length);
     pool = pool.concat(extra);
   }
-  // 质量优先 + 一点随机，保证每次进来的顺序不一样
-  return pool
+
+  const ordered = pool
     .map((v) => ({ v, k: v.quality + Math.random() * 9 }))
     .sort((a, b) => b.k - a.k)
     .map((x) => x.v);
+
+  QUEUES.set(key, ordered);
+  return ordered;
 }
 
 function counts(module) {
@@ -223,7 +232,7 @@ function renderFeed(module, mode) {
   S.views[mode] = (S.views[mode] || 0) + 1;
   save();
 
-  const list = buildQueue(module, mode);
+  const list = queueFor(module, mode);
   document.title = `${m.name} · ${MODES[mode].name}`;
 
   const top = `
@@ -233,7 +242,8 @@ function renderFeed(module, mode) {
       <div class="modes">
         ${Object.entries(MODES).map(([k, v]) => `<button class="${k === mode ? 'on' : ''}" data-mode="${k}" data-module="${module}">${v.name}</button>`).join('')}
       </div>
-      <span class="counter" id="counter">${list.length ? '1' : '0'}/${list.length}</span>
+      <button class="reshuffle" data-reshuffle="${module}:${mode}" title="重新洗一遍顺序">↻</button>
+      <button class="tolist" data-go="#/m/${module}/list" title="列表">☰</button>
     </div>`;
 
   if (!list.length) {
@@ -253,7 +263,7 @@ function renderFeed(module, mode) {
       <div class="stage"></div>` : ''}
       ${mode !== 'listen' ? `<div class="stage">
         <div class="cover" style="background:${gradOf(v)}"></div>
-        <span class="demo">${v.bvid === 'DEMO' ? '示例' : 'B 站'}</span>
+        <span class="demo">B 站</span>
         <button class="playbtn" data-play="${v.id}">▶</button>
         <span class="dur">${fmt(v.duration)}</span>
       </div>` : ''}
@@ -266,60 +276,48 @@ function renderFeed(module, mode) {
           <button class="act like" data-like="${v.id}">👍 喜欢</button>
           <button class="act dis" data-dislike="${v.id}">👎 不感兴趣</button>
         </div>
-        <div class="tags">${v.tags.map((t) => `<span class="tag">${t}</span>`).join('')}<span class="tag">${fmtL(v.duration)}</span></div>
+        <div class="tags">${v.tags.map((t) => `<span class="tag">${t}</span>`).join('')}<span class="tag">${fmtL(v.duration)}</span>${isSeen(v.id) ? '<span class="tag tag-seen">看过</span>' : ''}</div>
       </div>
       <div class="feed-foot">
-        <div class="pbar"><i style="width:${((i + 1) / list.length) * 100}%"></i></div>
-        <div class="swipe">⌃ 上滑下一个 · 下滑回上一条</div>
+        <div class="navrow">
+          <button class="navbtn" data-prev ${i === 0 ? 'disabled' : ''}>‹ 上一条</button>
+          <span class="pos"><b>${i + 1}</b> / ${list.length}</span>
+          <button class="navbtn" data-next>下一条 ›</button>
+        </div>
+        <div class="swipe">上滑 / 下滑也能切换</div>
       </div>
     </section>`).join('');
 
   app.innerHTML = top + `<div class="feed" id="feed">${slides}</div>`;
 
   const feed = document.getElementById('feed');
-  const counter = document.getElementById('counter');
 
-  if (feedObserver) feedObserver.disconnect();
-  const seenTimers = {};
-  feedObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        const i = +e.target.dataset.idx;
-        const id = e.target.dataset.id;
-        if (e.isIntersecting && e.intersectionRatio > 0.6) {
-          counter.textContent = `${i + 1}/${list.length}`;
-          clearTimeout(seenTimers[id]);
-          seenTimers[id] = setTimeout(() => {
-            if (!S.seen[id]) {
-              S.seen[id] = Date.now();
-              save();
-            }
-          }, 1200);
-        }
-      });
-    },
-    { root: feed, threshold: [0.6] }
-  );
-  feed.querySelectorAll('.slide').forEach((s) => feedObserver.observe(s));
+  // 从第一条没看过的开始；全看过就从开头
+  let startIdx = list.findIndex((v) => !isSeen(v.id));
+  if (startIdx < 0) startIdx = 0;
+  if (startIdx > 0) feed.scrollTop = startIdx * feed.clientHeight;
 
   if (startId) {
-    const target = feed.querySelector(`.slide[data-id="${startId}"]`);
+    const i = list.findIndex((v) => v.id === startId);
+    if (i >= 0) feed.scrollTop = i * feed.clientHeight;
     startId = null;
-    if (target) requestAnimationFrame(() => { feed.scrollTop = target.offsetTop; });
   }
 }
 
-function goNext() {
+function currentSlide() {
+  const feed = document.getElementById('feed');
+  if (!feed) return -1;
+  return Math.round(feed.scrollTop / feed.clientHeight);
+}
+
+function goTo(delta) {
   const feed = document.getElementById('feed');
   if (!feed) return;
   const slides = [...feed.querySelectorAll('.slide')];
-  const cur = slides.findIndex((s) => {
-    const r = s.getBoundingClientRect();
-    return r.top > -10 && r.top < window.innerHeight * 0.5;
-  });
-  const next = slides[Math.max(0, cur) + 1];
-  if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  else toast('这个队列刷完了，换一个场景吧');
+  const i = currentSlide();
+  const t = slides[i + delta];
+  if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  else toast(delta > 0 ? '已经是最后一条了' : '已经是第一条了');
 }
 
 function mountPlayer(stage, v) {
@@ -338,6 +336,10 @@ function mountPlayer(stage, v) {
     high_quality: '1',
     danmaku: '0',
   });
+  // 点了播放才算「看过」——刷过去不算
+  S.seen[v.id] = Date.now();
+  save();
+
   const src = `https://player.bilibili.com/player.html?${q.toString()}`;
   stage.innerHTML =
     `<iframe src="${src}" allow="autoplay; fullscreen; picture-in-picture"` +
@@ -353,53 +355,65 @@ function mountPlayer(stage, v) {
 
 /* ---------------- list ---------------- */
 let listFilter = 'all';
+let listGroup = false;   // false = 密集网格，true = 按 UP 分组
+
 function renderList(module) {
   const m = mod(module);
   if (!m) return (location.hash = '#/');
   document.title = `${m.name} · 列表`;
 
   const all = VIDEOS.filter((v) => v.module === module);
-  const items = all.filter((v) => {
+  let items = all.filter((v) => {
     if (listFilter === 'short') return v.duration <= 600;
     if (listFilter === 'long') return v.duration > 600;
     if (listFilter === 'unseen') return !isSeen(v.id);
     return true;
   });
 
-  const groups = {};
-  items.forEach((v) => (groups[v.up] = groups[v.up] || []).push(v));
-  const keys = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
-
-  const body = keys.map((up) => {
-    const vs = groups[up].sort((a, b) => b.quality - a.quality);
-    return `
-      <div class="group">
-        <div class="group-h"><b>${up}</b><span>${vs.length} 条</span></div>
-        ${vs.map((v) => `
-          <button class="vrow" data-watch="${v.module}/${v.id}">
-            <div class="cv" style="background:${gradOf(v)}"><span class="d">${fmt(v.duration)}</span></div>
-            <div style="min-width:0">
-              <div class="t">${v.title}</div>
-              <div class="m">${v.tags.join(' · ')}${isSeen(v.id) ? '<span class="seen-dot">已看</span>' : ''}</div>
-            </div>
-          </button>`).join('')}
-      </div>`;
-  }).join('');
+  let body;
+  if (listGroup) {
+    const groups = {};
+    items.forEach((v) => (groups[v.up] = groups[v.up] || []).push(v));
+    body = Object.keys(groups)
+      .sort((a, b) => groups[b].length - groups[a].length)
+      .map((up) => {
+        const vs = groups[up].sort((a, b) => b.quality - a.quality);
+        return `<div class="group">
+          <div class="group-h"><b>${up}</b><span>${vs.length} 条</span></div>
+          <div class="grid">${vs.map(cell).join('')}</div>
+        </div>`;
+      }).join('');
+  } else {
+    items = items.slice().sort((a, b) => b.quality - a.quality);
+    body = `<div class="grid">${items.map(cell).join('')}</div>`;
+  }
 
   app.innerHTML = `
     <div class="page top">
-      <div class="feed-top" style="position:static;background:none;padding:0 0 6px;backdrop-filter:none">
+      <div class="listbar">
         <button class="back" data-go="#/m/${module}">‹</button>
-        <span class="nm">${m.name} · ${all.length} 条</span>
-        <span class="counter">按 UP 分组</span>
+        <span class="nm">${m.name}</span>
+        <span class="cnt">${all.length} 条</span>
+        <button class="gbtn ${listGroup ? 'on' : ''}" data-group="1">按 UP</button>
       </div>
       <div class="chips">
-        ${[['all', '全部'], ['short', '短视频 ≤10分'], ['long', '长视频 >10分'], ['unseen', '未看']]
+        ${[['all', '全部'], ['short', '≤10分'], ['long', '>10分'], ['unseen', '未看']]
           .map(([k, l]) => `<button class="chip ${listFilter === k ? 'on' : ''}" data-filter="${k}">${l}</button>`).join('')}
       </div>
       ${body || '<div class="empty">没有符合条件的视频</div>'}
       <div style="height:30px"></div>
     </div>`;
+}
+
+function cell(v) {
+  return `<button class="cell" data-watch="${v.module}/${v.id}">
+    <div class="cell-cv" style="background:${gradOf(v)}">
+      <span class="cell-d">${fmt(v.duration)}</span>
+      ${isSeen(v.id) ? '<span class="cell-seen">看过</span>' : ''}
+    </div>
+    <div class="cell-t">${v.title}</div>
+    <div class="cell-m">${v.up}</div>
+  </button>`;
 }
 
 /* ---------------- me ---------------- */
@@ -441,7 +455,8 @@ function renderMe() {
       <div class="line" style="border-bottom:none"><span>更新方式</span><span class="r">只改数据文件，不改页面</span></div>
 
       <button class="btn-block" id="export">导出我的记录（JSON）</button>
-      <button class="btn-block" id="reset" style="color:#ff9b9b">清空本地记录</button>
+      <button class="btn-block" id="clearseen">清空浏览记录（${seenN} 条）</button>
+      <button class="btn-block" id="reset" style="color:#ff9b9b">清空全部（含喜欢 / 不喜欢）</button>
     </div>`;
 }
 
@@ -478,6 +493,35 @@ document.addEventListener('click', (e) => {
   if (play) {
     const v = VIDEOS.find((x) => x.id === play.dataset.play);
     if (v) mountPlayer(play.closest('.stage'), v);
+    return;
+  }
+
+  if (e.target.closest('[data-prev]')) return goTo(-1);
+  if (e.target.closest('[data-next]')) return goTo(1);
+
+  const re = e.target.closest('[data-reshuffle]');
+  if (re) {
+    QUEUES.delete(re.dataset.reshuffle);
+    const [mm, mo] = re.dataset.reshuffle.split(':');
+    startId = null;
+    renderFeed(mm, mo);
+    toast('顺序已重新洗过');
+    return;
+  }
+
+  if (e.target.closest('[data-group]')) {
+    listGroup = !listGroup;
+    renderList(location.hash.split('/')[2]);
+    return;
+  }
+
+  if (e.target.id === 'clearseen') {
+    if (confirm('清空浏览记录？所有视频会重新出现，喜欢和不喜欢保留。')) {
+      S.seen = {};
+      save();
+      renderMe();
+      toast('浏览记录已清空');
+    }
     return;
   }
 
