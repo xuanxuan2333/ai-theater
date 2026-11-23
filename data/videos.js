@@ -1145,6 +1145,156 @@ window.THEATER_DATA = {
         "pick": "manual",
         "at": "2026-11-23"
       }
+    },
+    {
+      "id": "bili-BV1bbU8BREog",
+      "bvid": "BV1bbU8BREog",
+      "aid": 115613036973827,
+      "cid": 34340998050,
+      "title": "【中英+文稿】DeepMind团队纪录片《思考游戏》，由《AlphaGo》原班人马打造，翠贝卡电影节官方入围",
+      "up": "KrillinAI俊希",
+      "duration": 5048,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "发展史"
+      ],
+      "quality": 84,
+      "views": 137467,
+      "cover": "https://i2.hdslb.com/bfs/archive/d1c82ea8e0b6db6c89a7c590cd67bc036a6a49e1.jpg",
+      "curate": {
+        "rate": 15.02,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV16ps46zEjA",
+      "bvid": "BV16ps46zEjA",
+      "aid": 117641167640052,
+      "cid": 43739253938,
+      "title": "Anthropic崛起史：最强AI背后的矛与盾，布道者与伪君子【硅谷101】",
+      "up": "硅谷101",
+      "duration": 5961,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "发展史",
+        "Claude Code"
+      ],
+      "quality": 71,
+      "views": 263341,
+      "cover": "https://i0.hdslb.com/bfs/archive/801562b560f81480b874c05a14e472cd1b65888f.jpg",
+      "curate": {
+        "rate": 7.97,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1mEnb6LEnC",
+      "bvid": "BV1mEnb6LEnC",
+      "aid": 117489115666041,
+      "cid": 42979689702,
+      "title": "人类文明史，就是对Anthropic的盗版与蒸馏史｜达里奥创世录",
+      "up": "你好与那啥",
+      "duration": 701,
+      "module": "history",
+      "modes": [
+        "focus"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 83,
+      "views": 620496,
+      "cover": "https://i2.hdslb.com/bfs/archive/ac3b79b758de859ef05bdc8081317846a1b80262.jpg",
+      "curate": {
+        "rate": 18.95,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1Zp4q6KEWa",
+      "bvid": "BV1Zp4q6KEWa",
+      "aid": 117569277138654,
+      "cid": 43381950203,
+      "title": "学不如抄？Anthropic 为啥这么怕蒸馏！",
+      "up": "林亦LYi",
+      "duration": 760,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 55,
+      "views": 2537350,
+      "cover": "https://i1.hdslb.com/bfs/archive/cee031bbd470bd86f1f0bde29674711517a2556e.jpg",
+      "curate": {
+        "rate": 5.09,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1tj4w6WEsx",
+      "bvid": "BV1tj4w6WEsx",
+      "aid": 117546493673718,
+      "cid": 43264835888,
+      "title": "30分钟带你看懂Deepseek为什么要开源？Deepseek才是真正的后期运营大师！",
+      "up": "喵工智能KONG",
+      "duration": 1895,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 75,
+      "views": 877146,
+      "cover": "https://i0.hdslb.com/bfs/archive/61567cf348c2e849c8d7a458f3824ebe06f0da4a.jpg",
+      "curate": {
+        "rate": 10.01,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1Kpsv6rEKL",
+      "bvid": "BV1Kpsv6rEKL",
+      "aid": 117646452329080,
+      "cid": 43754520958,
+      "title": "黄仁勋为什么必须倒下？开源闭源之争，正在把世界推向2077",
+      "up": "喵工智能KONG",
+      "duration": 1633,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 63,
+      "views": 836760,
+      "cover": "https://i2.hdslb.com/bfs/archive/b5352480fb85b73f4c387ecb1c111536a21e4476.jpg",
+      "curate": {
+        "rate": 6.21,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
     }
   ]
 };
