@@ -325,3 +325,29 @@ h1.title { font-size: 26px; font-weight: 700; letter-spacing: .01em; margin-top:
 .filters button { font-size: 10.5px; padding: 4px 8px; border-radius: 7px; color: #7f8aa3; white-space: nowrap; }
 .filters button.on { background: #2a3550; color: #e6ebf5; font-weight: 600; }
 .feed-top .nm { max-width: 84px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- 封面图 ---------- */
+.cov-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+/* 大图模式：模糊铺底 + 中间 16:9 完整图 */
+.cov-blur {
+  position: absolute; inset: -10%; width: 120%; height: 120%;
+  object-fit: cover; display: block;
+  filter: blur(26px) brightness(.42) saturate(1.2);
+}
+.cov-img.fit {
+  inset: auto 0 auto 0; top: 50%; transform: translateY(-50%);
+  height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+}
+.cov-img.dead { display: none; }
+.cover-big { overflow: hidden; }
+.cover-big .cov-img { border-radius: 26px; }
+
+/* 列表里的进度条 */
+.cell-prog {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2.5px;
+  background: rgba(0,0,0,.45); z-index: 3;
+}
+.cell-prog i { display: block; height: 100%; background: #3ddcc0; }

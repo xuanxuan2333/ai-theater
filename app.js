@@ -27,11 +27,12 @@ function load() {
       liked: s.liked || {},
       disliked: s.disliked || {},
       views: s.views || { relax: 0, focus: 0, listen: 0 },
+      progress: s.progress || {},
       lastModule: s.lastModule || null,
       lastMode: s.lastMode || 'relax',
     };
   } catch (e) {
-    return { seen: {}, liked: {}, disliked: {}, views: { relax: 0, focus: 0, listen: 0 }, lastModule: null, lastMode: 'relax' };
+    return { seen: {}, liked: {}, disliked: {}, views: { relax: 0, focus: 0, listen: 0 }, progress: {}, lastModule: null, lastMode: 'relax' };
   }
 }
 let S = load();
@@ -102,6 +103,26 @@ const GRADS = [
   'linear-gradient(135deg,#2a1435,#c04bff)',
   'linear-gradient(135deg,#33131a,#ff5f5f)',
 ];
+const progressOf = (v) => {
+  const p = S.progress[v.id];
+  if (!p || !p.sec) return 0;
+  return Math.min(100, Math.round((p.sec / Math.max(v.duration, 1)) * 100));
+};
+
+const coverImg = (v, small) => {
+  if (!v.cover) return '';
+  const src = small && v.cover.includes('hdslb') ? `${v.cover}@320w_180h_1c.webp` : v.cover;
+  if (small) {
+    return `<img class="cov-img" src="${src}" alt="" loading="lazy" decoding="async"
+      referrerpolicy="no-referrer" onerror="this.classList.add('dead')">`;
+  }
+  // 大图：模糊铺底 + 16:9 完整显示，避免把 16:9 裁成竖条
+  return `<img class="cov-blur" src="${src}" alt="" aria-hidden="true" loading="lazy"
+      referrerpolicy="no-referrer" onerror="this.classList.add('dead')">
+    <img class="cov-img fit" src="${src}" alt="" loading="lazy" decoding="async"
+      referrerpolicy="no-referrer" onerror="this.classList.add('dead')">`;
+};
+
 const gradOf = (v) => GRADS[(v.id.charCodeAt(v.id.length - 1) + v.id.length) % GRADS.length];
 
 /* ---------------- boot ---------------- */
@@ -268,13 +289,13 @@ function renderFeed(module, filterArg) {
     <section class="slide ${listenOnly ? 'listen' : ''}" data-idx="${i}" data-id="${v.id}">
       ${listenOnly ? `
       <div class="listen-hero">
-        <div class="cover-big" style="background:${gradOf(v)}"></div>
+        <div class="cover-big" style="background:${gradOf(v)}">${coverImg(v)}</div>
         <div class="wave">${[8, 15, 10, 21, 7, 17, 12, 23, 9, 14].map((h) => `<i style="height:${h}px"></i>`).join('')}</div>
         <div class="lnote">屏幕常亮 · 锁屏会暂停</div>
       </div>
       <div class="stage"></div>` : ''}
       ${!listenOnly ? `<div class="stage">
-        <div class="cover" style="background:${gradOf(v)}"></div>
+        <div class="cover" style="background:${gradOf(v)}">${coverImg(v)}</div>
         <span class="demo">B 站</span>
         <button class="playbtn" data-play="${v.id}">▶</button>
         <span class="dur">${fmt(v.duration)}</span>
@@ -288,7 +309,7 @@ function renderFeed(module, filterArg) {
           <button class="act like" data-like="${v.id}">👍 喜欢</button>
           <button class="act dis" data-dislike="${v.id}">👎 不感兴趣</button>
         </div>
-        <div class="tags">${v.tags.map((t) => `<span class="tag">${t}</span>`).join('')}<span class="tag">${fmtL(v.duration)}</span>${isSeen(v.id) ? '<span class="tag tag-seen">看过</span>' : ''}</div>
+        <div class="tags">${v.tags.map((t) => `<span class="tag">${t}</span>`).join('')}<span class="tag">${fmtL(v.duration)}</span><span class="tag ${progressOf(v) ? 'tag-seen' : ''}" id="prog-${v.id}">${progressOf(v) ? '已看 ' + progressOf(v) + '%' : '未播放'}</span></div>
       </div>
       <div class="feed-foot">
         <div class="navrow">
@@ -330,6 +351,41 @@ function goTo(delta) {
   else toast(delta > 0 ? '已经是最后一条了' : '已经是第一条了');
 }
 
+let playId = null, playStart = 0, playTimer = null, playBase = 0, playDur = 0;
+
+function stopTracking(saveNow) {
+  if (playTimer) clearInterval(playTimer);
+  playTimer = null;
+  if (playId) {
+    const cur = S.progress[playId] || { sec: 0 };
+    cur.sec = Math.min(playDur, playBase + Math.round((Date.now() - playStart) / 1000));
+    cur.at = Date.now();
+    S.progress[playId] = cur;
+    if (saveNow !== false) save();
+  }
+  playId = null;
+}
+
+function startTracking(v) {
+  stopTracking();
+  playId = v.id;
+  playDur = v.duration;
+  playBase = (S.progress[v.id] && S.progress[v.id].sec) || 0;
+  playStart = Date.now();
+  playTimer = setInterval(() => {
+    const feed = document.getElementById('feed');
+    if (!feed) return stopTracking();
+    const slide = feed.querySelector(`.slide[data-id="${playId}"]`);
+    const active = Math.round(feed.scrollTop / feed.clientHeight);
+    const cur = feed.querySelectorAll('.slide')[active];
+    if (!cur || cur.dataset.id !== playId) return stopTracking();  // 划走了就停
+    const p = { sec: Math.min(playDur, playBase + Math.round((Date.now() - playStart) / 1000)), at: Date.now() };
+    S.progress[playId] = p;
+    const el = document.getElementById('prog-' + playId);
+    if (el) el.textContent = `已看 ${Math.min(100, Math.round((p.sec / playDur) * 100))}%`;
+  }, 1000);
+}
+
 function mountPlayer(stage, v) {
   if (!v.bvid || v.bvid === 'DEMO') {
     toast('这条还是占位数据');
@@ -346,9 +402,10 @@ function mountPlayer(stage, v) {
     high_quality: '1',
     danmaku: '0',
   });
-  // 点了播放才算「看过」——刷过去不算
+  // 点了播放才算「看过」——刷过去不算；同时开始累计观看时长
   S.seen[v.id] = Date.now();
   save();
+  startTracking(v);
 
   const src = `https://player.bilibili.com/player.html?${q.toString()}`;
   stage.innerHTML =
@@ -417,10 +474,13 @@ function renderList(module) {
 }
 
 function cell(v) {
+  const pc = progressOf(v);
   return `<button class="cell" data-watch="${v.module}/${v.id}">
     <div class="cell-cv" style="background:${gradOf(v)}">
+      ${coverImg(v, true)}
       <span class="cell-d">${fmt(v.duration)}</span>
-      ${isSeen(v.id) ? '<span class="cell-seen">看过</span>' : ''}
+      ${pc ? `<span class="cell-seen">${pc}%</span>` : ''}
+      ${pc ? `<span class="cell-prog"><i style="width:${pc}%"></i></span>` : ''}
     </div>
     <div class="cell-t">${v.title}</div>
     <div class="cell-m">${v.up}</div>
@@ -483,6 +543,7 @@ function topUp(kind) {
 
 /* ---------------- router & events ---------------- */
 function route() {
+  if (playId) stopTracking();
   const p = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
   if (!p.length) return renderHome();
   if (p[0] === 'me') return renderMe();
@@ -544,6 +605,7 @@ document.addEventListener('click', (e) => {
   if (e.target.id === 'clearseen') {
     if (confirm('清空浏览记录？所有视频会重新出现，喜欢和不喜欢保留。')) {
       S.seen = {};
+      S.progress = {};
       save();
       renderMe();
       toast('浏览记录已清空');
