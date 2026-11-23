@@ -1295,6 +1295,256 @@ window.THEATER_DATA = {
         "pick": "manual",
         "at": "2026-11-23"
       }
+    },
+    {
+      "id": "bili-BV1HEy8zmE2M",
+      "bvid": "BV1HEy8zmE2M",
+      "aid": 117652693455237,
+      "cid": 43786504202,
+      "title": "证明黎曼猜想后！Anthropic接下来会怎么统治人类？！",
+      "up": "BoyJump老登",
+      "duration": 1306,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 53,
+      "views": 217721,
+      "cover": "https://i2.hdslb.com/bfs/archive/026da365937c5cd76a43f5ed65b007aa314939cf.jpg",
+      "curate": {
+        "rate": 4.71,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1QAnB67EL3",
+      "bvid": "BV1QAnB67EL3",
+      "aid": 117477271014442,
+      "cid": 42918086045,
+      "title": "第四次工业革命为何发生？【小约翰？】",
+      "up": "猫眼博客",
+      "duration": 2512,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 53,
+      "views": 143342,
+      "cover": "https://i0.hdslb.com/bfs/archive/f3666414dc9d9d6065f5487c5a938f4ce1da478c.jpg",
+      "curate": {
+        "rate": 8.96,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1gxW26LEQj",
+      "bvid": "BV1gxW26LEQj",
+      "aid": 117598016572111,
+      "cid": 43520034327,
+      "title": "地图上的算力战争：中美 AI 持久战的地理账",
+      "up": "一叶知秋yoqulin",
+      "duration": 1077,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 42,
+      "views": 51099,
+      "cover": "https://i0.hdslb.com/bfs/archive/ab185654fe699c2a7957d67077f8a461c370d544.jpg",
+      "curate": {
+        "rate": 1.74,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1vSW66eELC",
+      "bvid": "BV1vSW66eELC",
+      "aid": 117610347763707,
+      "cid": 43579082872,
+      "title": "从非营利组织到倒向微软，OpenAI造福全人类的使命是怎么一步步变味的？",
+      "up": "刘辑",
+      "duration": 861,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 53,
+      "views": 25066,
+      "cover": "https://i0.hdslb.com/bfs/archive/543c68dee0eea14342b6206fdae6fcf8eaf5c63f.jpg",
+      "curate": {
+        "rate": 3.74,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1m1mtBGE1k",
+      "bvid": "BV1m1mtBGE1k",
+      "aid": 115695195066818,
+      "cid": 34672543287,
+      "title": "【电力帝国】为什么AI会搞死美国？深扒世界霸主的“电力死局”",
+      "up": "空山猎人",
+      "duration": 1360,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "Transformer"
+      ],
+      "quality": 63,
+      "views": 1445015,
+      "cover": "https://i2.hdslb.com/bfs/archive/2e1283f619d927ef451d9d8f42c9571b97b323b0.jpg",
+      "curate": {
+        "rate": 6.82,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1fat76HEkj",
+      "bvid": "BV1fat76HEkj",
+      "aid": 117199977060525,
+      "cid": 41657698899,
+      "title": "AI时代，中国的护城河、杀手锏【大国之治·东数西算】",
+      "up": "大象放映室",
+      "duration": 1465,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 60,
+      "views": 444390,
+      "cover": "https://i1.hdslb.com/bfs/archive/02aeecd3385a73bef6eccd11c34564f5a1011b8d.jpg",
+      "curate": {
+        "rate": 6.05,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1LmorBDEUF",
+      "bvid": "BV1LmorBDEUF",
+      "aid": 116476006634833,
+      "cid": 37876271980,
+      "title": "AI简史：从1950到2026，科学界的人类群星闪耀时",
+      "up": "一枚卓子",
+      "duration": 886,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 75,
+      "views": 395160,
+      "cover": "https://i0.hdslb.com/bfs/archive/a86dfae45fa5c33ec892b8bfde28af3a59f58379.jpg",
+      "curate": {
+        "rate": 8.45,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1Ws61BNENK",
+      "bvid": "BV1Ws61BNENK",
+      "aid": 115989400322487,
+      "cid": 35730820015,
+      "title": "OpenAI“弑父”大戏：踢走马斯克、清洗AI天才，奥特曼如何一步步独掌AI话语权？",
+      "up": "有点在李",
+      "duration": 917,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 47,
+      "views": 274477,
+      "cover": "https://i1.hdslb.com/bfs/archive/876c77961612f2c983218c2abde71939958c7988.jpg",
+      "curate": {
+        "rate": 2.95,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV163h8zLEoB",
+      "bvid": "BV163h8zLEoB",
+      "aid": 114958658443364,
+      "cid": 31441883044,
+      "title": "【油管百万播放】 我们尚未准备好迎接超级智能丨《AI 2027》",
+      "up": "Meaningbreaker",
+      "duration": 2051,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 67,
+      "views": 105712,
+      "cover": "https://i0.hdslb.com/bfs/archive/10c09a4dbdb797e329398e5785b6b5bccd1b42cb.jpg",
+      "curate": {
+        "rate": 5.89,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1pF4h6ZEQH",
+      "bvid": "BV1pF4h6ZEQH",
+      "aid": 117564529250522,
+      "cid": 43359143963,
+      "title": "老登又瘫坐眩晕！Anthropic今天杀死了结构生物学！",
+      "up": "BoyJump老登",
+      "duration": 472,
+      "module": "history",
+      "modes": [
+        "relax",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 52,
+      "views": 185355,
+      "cover": "https://i2.hdslb.com/bfs/archive/86292581906ac50eaa0a6639fb33adc9f95ec86b.jpg",
+      "curate": {
+        "rate": 3.95,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
     }
   ]
 };
