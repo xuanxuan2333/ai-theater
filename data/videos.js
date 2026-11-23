@@ -1,7 +1,7 @@
 /* 数据文件 · 只改这个文件 */
 window.THEATER_DATA = {
   "version": 1,
-  "updatedAt": "2026-11-21",
+  "updatedAt": "2026-11-23",
   "note": "这是唯一的数据文件。改它就等于更新网站；页面代码不用动。bvid 填真实 BV 号即可播放。",
   "modules": [
     {
@@ -969,6 +969,181 @@ window.THEATER_DATA = {
         "rate": 7.02,
         "pick": "manual",
         "at": "2026-11-21"
+      }
+    },
+    {
+      "id": "bili-BV18j411S7ST",
+      "bvid": "BV18j411S7ST",
+      "aid": 445257120,
+      "cid": 1180329943,
+      "title": "一口气了解英伟达，芯片新王凭什么是他？",
+      "up": "小Lin说",
+      "duration": 1638,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 59,
+      "views": 3403395,
+      "cover": "https://i2.hdslb.com/bfs/archive/d4159ec2886c3d59a2d37f42110c11f18f00beba.jpg",
+      "curate": {
+        "rate": 5.95,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1uQghzLEmB",
+      "bvid": "BV1uQghzLEmB",
+      "aid": 114885979607638,
+      "cid": 31171608861,
+      "title": "【面对面】专访英伟达创始人黄仁勋",
+      "up": "央视新闻",
+      "duration": 2255,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 60,
+      "views": 1676384,
+      "cover": "https://i0.hdslb.com/bfs/archive/e82c197487c21ef255b4f63a46c6bf2150badcf1.jpg",
+      "curate": {
+        "rate": 6.08,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV14pdGBHEfJ",
+      "bvid": "BV14pdGBHEfJ",
+      "aid": 116538837376534,
+      "cid": 38189796975,
+      "title": "英伟达从零到万亿市值的爆炸式崛起纪录片",
+      "up": "KnowPi",
+      "duration": 3370,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 84,
+      "views": 9613,
+      "cover": "https://i1.hdslb.com/bfs/archive/8d052e14f51401e2ae6e1978ff46f6f127a1da03.jpg",
+      "curate": {
+        "rate": 12.92,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1FGpk6yER4",
+      "bvid": "BV1FGpk6yER4",
+      "aid": 117436787463663,
+      "cid": 42724101356,
+      "title": "一个动画， 看懂70年AI发展史",
+      "up": "进击的小遥",
+      "duration": 1923,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "发展史"
+      ],
+      "quality": 81,
+      "views": 20615,
+      "cover": "https://i0.hdslb.com/bfs/archive/01a55004811dc364957fd5974e90a6b21048329b.jpg",
+      "curate": {
+        "rate": 10.72,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1iedQBjEqC",
+      "bvid": "BV1iedQBjEqC",
+      "aid": 116443240729557,
+      "cid": 37698536381,
+      "title": "【中配】《人工智能革命》| 完整纪录片 | NOVA频道 | PBS电视台 - NOVA PBS Official _ 24-03-28",
+      "up": "头号个体",
+      "duration": 6294,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 83,
+      "views": 5975,
+      "cover": "https://i2.hdslb.com/bfs/archive/990c5e240446ee8b01bd03af8b32babf777b487e.png",
+      "curate": {
+        "rate": 9.14,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1pM7C6BEky",
+      "bvid": "BV1pM7C6BEky",
+      "aid": 116696929079310,
+      "cid": 38912917836,
+      "title": "OpenAI史：理想、背叛和颠覆，一个AI帝国的十年",
+      "up": "眼镜爱叨叨",
+      "duration": 1844,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "发展史"
+      ],
+      "quality": 73,
+      "views": 44664,
+      "cover": "https://i1.hdslb.com/bfs/archive/557f88ce854a5b8a9df05f6f626b0afaf10859e8.jpg",
+      "curate": {
+        "rate": 6.28,
+        "pick": "manual",
+        "at": "2026-11-23"
+      }
+    },
+    {
+      "id": "bili-BV1wpsb67Etg",
+      "bvid": "BV1wpsb67Etg",
+      "aid": 117642073479075,
+      "cid": 43735452167,
+      "title": "架空股东，5人掌权：Anthropic凭什么替人类做决定？",
+      "up": "脑袋开瓶器",
+      "duration": 709,
+      "module": "history",
+      "modes": [
+        "focus",
+        "listen"
+      ],
+      "tags": [
+        "AI"
+      ],
+      "quality": 63,
+      "views": 44005,
+      "cover": "https://i1.hdslb.com/bfs/archive/f9796aa9eced906a895ffe8a401c9cb2faa91393.jpg",
+      "curate": {
+        "rate": 6.38,
+        "pick": "manual",
+        "at": "2026-11-23"
       }
     }
   ]
